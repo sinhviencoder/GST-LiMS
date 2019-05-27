@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="form-user" action="#" th:action="@{/admin/user}" th:object="${user}" method="post" class="forms-sample">
+  <div class="form-group row" th:classappend="${#fields.hasErrors('firstName')} ? has-danger : ''">
+    <label class="col-sm-3 col-form-label" th:for="firstName">First Name*</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{firstName}" class="form-control" placeholder="First Name">
+      <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error mt-2 text-danger" for="firstName">First Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row" th:classappend="${#fields.hasErrors('lastName')} ? has-danger : ''">
+    <label th:for="lastName" class="col-sm-3 col-form-label">Last Name*</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{lastName}" class="form-control" placeholder="Lasst Name">
+      <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error mt-2 text-danger">Last Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label th:for="username" class="col-sm-3 col-form-label">Username*</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{username}" class="form-control" placeholder="Username">
+      <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error mt-2 text-danger">Username Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label th:for="phone" class="col-sm-3 col-form-label">Phone*</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone">
+      <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="error mt-2 text-danger">Phone Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label th:for="password" class="col-sm-3 col-form-label">PassWord*</label>
+    <div class="col-sm-9">
+      <input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+      <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error mt-2 text-danger">Password Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="avatar" class="col-sm-3 col-form-label">Avatar</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{avatar}" class="form-control" placeholder="Avatar">
+    </div>
+  </div>
+  <div class="form-group row active">
+    <label class="col-sm-3 col-form-label">Roles</label>
+    <div class="col-sm-9">
+	    <select class="js-example-basic-multiple w-100"  th:field="*{roles}" name="roles[]" multiple="multiple">
+	      <option th:each="role : ${roles}"
+			   th:value="${role.roleId}"
+			   th:utext="${role.name}"/>
+	    </select>
+    </div>
+  </div>
+				
+  <button type="button" class="btn btn-primary mr-2" onclick="saveUser()">Save</button>
+  <script th:inline="javascript">
+
+	    var isSuccess = /*[[${isSuccess}]]*/ false;
+		if(isSuccess){
+			$('#user-datatable').DataTable().ajax.reload();
+			
+			console.log("success");
+			}else{
+			console.log("error");
+		}
+	    
+		/* select2 */
+		(function($) {
+		  'use strict';
+		  setTimeout(function(){
+			  if ($(".js-example-basic-multiple").length) {
+			    $(".js-example-basic-multiple").select2();
+			  }
+			}, 500);
+		})(jQuery);
+	</script>
+</form>
+</body>
+</html>

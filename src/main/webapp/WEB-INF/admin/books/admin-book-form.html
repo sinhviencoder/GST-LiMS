@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="form-book" action="#" th:action="@{/admin/book/add}" th:object="${book}" method="post" class="forms-sample">
+  <div class="form-group row" th:classappend="${#fields.hasErrors('name')} ? has-danger : ''">
+    <label class="col-sm-3 col-form-label" th:for="name">Book Name*</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{name}" class="form-control" placeholder="Book Name">
+      <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error mt-2 text-danger" for="name">Book Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row" th:classappend="${#fields.hasErrors('description')} ? has-danger : ''">
+    <label th:for="description" class="col-sm-3 col-form-label">Description</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{description}" class="form-control" placeholder="Description">
+      <label th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error mt-2 text-danger">Description Error.</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Author</label>
+    <div class="col-sm-9">
+    <select class="js-example-basic-single w-100"  th:field="*{author}">
+      <option value="">--Select Author--</option>
+      <option th:each="author : ${authors}"
+		   th:value="${author.authorId}"
+		   th:utext="${author.name}"/>
+    </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Category</label>
+    <div class="col-sm-9">
+    <select class="js-example-basic-single w-100"  th:field="*{category}">
+      <option value="">--Select Category--</option>
+      <option th:each="category : ${categorys}"
+		   th:value="${category.categoryId}"
+		   th:utext="${category.name}"/>
+    </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label th:for="count" class="col-sm-3 col-form-label">Count</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{count}" class="form-control" placeholder="count">
+      <label th:if="${#fields.hasErrors('count')}" th:errors="*{count}" class="error mt-2 text-danger">count Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label th:for="status" class="col-sm-3 col-form-label">Status</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{status}" class="form-control" placeholder="status">
+      <label th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error mt-2 text-danger">status Name Error.</label>
+    </div>
+  </div>
+				
+  <button type="button" class="btn btn-primary mr-2" onclick="saveBook()">Save</button>
+  <script th:inline="javascript">
+	    var isSuccess = /*[[${isSuccess}]]*/ false;
+		if(isSuccess){
+			$('#book-datatable').DataTable().ajax.reload();
+			
+			console.log("success");
+			}else{
+			console.log("error");
+		}
+
+		if ($(".js-example-basic-single").length) {
+		  $(".js-example-basic-single").select2();
+		}
+	</script>
+</form>
+</body>
+</html>
