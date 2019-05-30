@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{views/layouts/layout}">
 <head>
-	<title>Trang Chủ</title>
+	<title>Trang Chá»§</title>
 </head>
 
 <body class="stretched">
@@ -20,14 +20,14 @@
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span>Muon sach</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Một Lít Nước Mắt</a></h3></div>
-								<span>Tác Giả: Kito Aya</span>
-								<div class="product-rating">Nhà xuất bản: Nhà Xuất Bản Trẻ</div>
+							<div class="product-desc" th:each ="book : ${books}">
+								<div class="product-title"><h3><a href="#"><p  th:text="${book.name}"></p></a></h3></div>
+								<span><p th:text="{author.name}"></p></span>
+								<div class="product-rating">Nha xuat ban</div>
 							</div>
 						</div>
 
@@ -36,12 +36,12 @@
 								<a href="#"><img src="/demos/construction/images/projects/2.jpg" alt="Slim Fit Chinos"></a>
 								<a href="#"><img src="/demos/construction/images/projects/2.jpg" alt="Slim Fit Chinos"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Tony Buổi Sáng</a></h3></div>
+								<div class="product-title"><h3><a href="#">Tony Buá»•i SĂ¡ng</a></h3></div>
 							</div>
 						</div>
 
@@ -57,12 +57,12 @@
 									</div>
 								</div>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Hoa Vàng Trên Cỏ Xanh</a></h3></div>
+								<div class="product-title"><h3><a href="#">Hoa VĂ ng TrĂªn Cá»� Xanh</a></h3></div>
 							</div>
 						</div>
 
@@ -71,8 +71,8 @@
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Light Blue Denim Dress"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Light Blue Denim Dress"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
@@ -85,12 +85,12 @@
 								<a href="#"><img src="/demos/construction/images/projects/3.jpg" alt="Unisex Sunglasses"></a>
 								<a href="#"><img src="/demos/construction/images/projects/3.jpg" alt="Unisex Sunglasses"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Chú Hải Âu Hạnh Phúc</a></h3></div>
+								<div class="product-title"><h3><a href="#">ChĂº Háº£i Ă‚u Háº¡nh PhĂºc</a></h3></div>
 							</div>
 						</div>
 
@@ -99,12 +99,12 @@
 								<a href="#"><img src="/demos/construction/images/projects/4.jpg" alt="Blue Round-Neck Tshirt"></a>
 								<a href="#"><img src="/demos/construction/images/projects/4.jpg" alt="Blue Round-Neck Tshirt"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Tôi Là Malala</a></h3></div>
+								<div class="product-title"><h3><a href="#">TĂ´i LĂ  Malala</a></h3></div>
 							</div>
 						</div>
 
@@ -113,12 +113,12 @@
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Silver Chrome Watch"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Silver Chrome Watch"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Sự Tích Vạ Và Công</a></h3></div>
+								<div class="product-title"><h3><a href="#">Sá»± TĂ­ch Váº¡ VĂ  CĂ´ng</a></h3></div>
 							</div>
 						</div>
 
@@ -127,12 +127,12 @@
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Grey Casual Shoes"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Grey Casual Shoes"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Câu Chuyện Dòng Sông Và Chàng Trai Cửu Long</a></h3></div>
+								<div class="product-title"><h3><a href="#">CĂ¢u Chuyá»‡n DĂ²ng SĂ´ng VĂ  ChĂ ng Trai Cá»­u Long</a></h3></div>
 							</div>
 						</div>
 
@@ -148,8 +148,8 @@
 									</div>
 								</div>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
@@ -162,8 +162,8 @@
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Green Trousers"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Green Trousers"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
@@ -176,12 +176,12 @@
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Aviator Sunglasses"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Aviator Sunglasses"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Nhà Giả Kim</a></h3></div>
+								<div class="product-title"><h3><a href="#">NhĂ  Giáº£ Kim</a></h3></div>
 							</div>
 						</div>
 
@@ -190,12 +190,12 @@
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Black Polo Tshirt"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Black Polo Tshirt"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Sách Ba Lô Lên Và Đi</a></h3></div>
+								<div class="product-title"><h3><a href="#">SĂ¡ch Ba LĂ´ LĂªn VĂ  Ä�i</a></h3></div>
 							</div>
 						</div>
 

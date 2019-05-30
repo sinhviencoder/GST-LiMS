@@ -43,7 +43,7 @@ public class AdminBookController {
 	}
 
 	@RequestMapping(value = "/admin/book/add", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult, Model model) {
+	public String addBook(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult, Model model) {
 		model.addAttribute("categorys", categoryService.getCategoryAll());
 		model.addAttribute("authors", authorService.getAuthorAll());
 		if (bindingResult.hasErrors()) {
