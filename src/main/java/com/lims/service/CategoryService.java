@@ -3,6 +3,9 @@ package com.lims.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
+
 import com.lims.entity.Category;
 
 public interface CategoryService {
@@ -19,7 +22,8 @@ public interface CategoryService {
 
 	String delete(long id);
 
-
 	String update(Category category);
+
+	DataTablesOutput<Category> findAll(DataTablesInput input);
 
 }

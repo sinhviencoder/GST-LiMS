@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Service;
 
 import com.lims.entity.Category;
@@ -91,6 +93,11 @@ public class CategoryServiceImpl implements CategoryService {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public DataTablesOutput<Category> findAll(DataTablesInput input) {
+		return categoryRepository.findAll(input);
 	}
 
 }
