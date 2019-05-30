@@ -10,7 +10,7 @@ public class BooksController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String pageBook() {
-		return "views/books/book";
+		return "views/books/book1";
 	}
 
 }
