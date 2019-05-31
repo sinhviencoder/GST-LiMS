@@ -25,9 +25,18 @@ public class Book {
 	private int count;
 	private String description;
 	private int status;
+	private String image;
 
 	public long getBookId() {
 		return bookId;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setBookId(long bookId) {

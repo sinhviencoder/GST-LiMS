@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{views/layouts/layout}">
 <head>
-	<title>Trang Chá»§</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Trang Chủ</title>
 </head>
 
 <body class="stretched">
@@ -12,21 +13,21 @@
 				<div class="container clearfix">
 
 					<!-- Shop
-					====================ok========================== -->
+					============================================== -->
 					<div id="shop" class="shop grid-container clearfix" data-layout="fitRows">
 
-						<div class="product clearfix">
+						<div th:each ="book : ${books}" class="product clearfix">
 							<div class="product-image">
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
+								<a href="#"><img src="@{book.image}" alt="Checked Short Dress"></a>
 								<div class="product-overlay">
 									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span>Muon sach</span></a>
 									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
-							<div class="product-desc" th:each ="book : ${books}">
+							<div class="product-desc">
 								<div class="product-title"><h3><a href="#"><p  th:text="${book.name}"></p></a></h3></div>
-								<span><p th:text="{author.name}"></p></span>
+								<span th:if="${book.author!=null}" th:text="${book.author.name}"></span>
 								<div class="product-rating">Nha xuat ban</div>
 							</div>
 						</div>
