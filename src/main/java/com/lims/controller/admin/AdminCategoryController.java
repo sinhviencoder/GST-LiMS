@@ -25,7 +25,7 @@ public class AdminCategoryController {
 	@GetMapping("/category")
 	public String index(ModelMap model) {
 		model.addAttribute("menuCategory", "active");
-//		model.addAttribute("menuSubCategory", "active");
+		model.addAttribute("menuSubCategory", "active");
 		return "admin/categories/admin-category";
 	}
 	
