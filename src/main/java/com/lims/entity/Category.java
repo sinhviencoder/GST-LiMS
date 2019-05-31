@@ -38,7 +38,7 @@ public class Category {
 	private List<Category> categoryChildrens = new ArrayList<Category>();
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // nếu Lazy thống bào mới tạo json được
-	@ManyToOne(fetch = FetchType.LAZY)//optional = false runtime, nullable=false không cho column null csdl
+	@ManyToOne(fetch = FetchType.EAGER)//optional = false runtime, nullable=false không cho column null csdl
 	@JoinColumn(name = "parent_id")
 	private Category categoryParent;
 

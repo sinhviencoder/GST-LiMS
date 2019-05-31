@@ -1,212 +1,67 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{views/layouts/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{views/layouts/layout}">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Trang Chủ</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Trang Chủ</title>
 </head>
 
 <body class="stretched">
-		<section layout:fragment="content" id="content">
+	<section layout:fragment="content" id="content">
 
-			<div class="content-wrap">
+		<div class="content-wrap">
 
-				<div class="container clearfix">
+			<div class="container clearfix">
 
-					<!-- Shop
+				<!-- Shop
 					============================================== -->
-					<div id="shop" class="shop grid-container clearfix" data-layout="fitRows">
+				<div id="shop" class="shop grid-container clearfix"
+					data-layout="fitRows">
 
-						<div th:each ="book : ${books}" class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
-								<a href="#"><img src="@{book.image}" alt="Checked Short Dress"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span>Muon sach</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#"><p  th:text="${book.name}"></p></a></h3></div>
-								<span th:if="${book.author!=null}" th:text="${book.author.name}"></span>
-								<div class="product-rating">Nha xuat ban</div>
+					<div th:each="book : ${books}" class="product clearfix">
+						<div class="product-image">
+							 <a href="#">
+								<img th:src="@{${book.image}}" alt="Checked Short Dress">
+							 </a>
+							<div class="product-overlay">
+								<a href="#" class="add-to-cart"><i
+									class="icon-shopping-cart"></i><span>Muon sach</span></a> <a
+									href="include/ajax/shop-item.html" class="item-quick-view"
+									data-lightbox="ajax"><i class="fa fa-book"></i><span>
+										Đọc trước</span></a>
 							</div>
 						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/2.jpg" alt="Slim Fit Chinos"></a>
-								<a href="#"><img src="/demos/construction/images/projects/2.jpg" alt="Slim Fit Chinos"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
+						<div class="product-desc">
+							<div class="product-title">
+								<h3>
+									<a href="#"><p th:text="${book.name}"></p></a>
+								</h3>
 							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Tony Buá»•i SĂ¡ng</a></h3></div>
-							</div>
+							<span th:if="${book.author!=null}" th:text="${book.author.name}"></span>
+							<div class="product-rating">Nha xuat ban</div>
 						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<div class="fslider" data-arrows="false">
-									<div class="flexslider">
-										<div class="slider-wrap">
-											<div class="slide"><a href="#"><img src="/demos/construction/images/projects/3.jpg" alt="Dark Brown Boots"></a></div>
-											<div class="slide"><a href="#"><img src="/demos/construction/images/projects/3.jpg" alt="Dark Brown Boots"></a></div>
-											<div class="slide"><a href="#"><img src="/demos/construction/images/projects/3.jpg" alt="Dark Brown Boots"></a></div>
-										</div>
-									</div>
-								</div>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Hoa VĂ ng TrĂªn Cá»� Xanh</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Light Blue Denim Dress"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Light Blue Denim Dress"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">The Black Key</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/3.jpg" alt="Unisex Sunglasses"></a>
-								<a href="#"><img src="/demos/construction/images/projects/3.jpg" alt="Unisex Sunglasses"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">ChĂº Háº£i Ă‚u Háº¡nh PhĂºc</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/4.jpg" alt="Blue Round-Neck Tshirt"></a>
-								<a href="#"><img src="/demos/construction/images/projects/4.jpg" alt="Blue Round-Neck Tshirt"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">TĂ´i LĂ  Malala</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Silver Chrome Watch"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Silver Chrome Watch"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Sá»± TĂ­ch Váº¡ VĂ  CĂ´ng</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Grey Casual Shoes"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Grey Casual Shoes"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">CĂ¢u Chuyá»‡n DĂ²ng SĂ´ng VĂ  ChĂ ng Trai Cá»­u Long</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<div class="fslider" data-arrows="false">
-									<div class="flexslider">
-										<div class="slider-wrap">
-											<div class="slide"><a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Pink Printed Dress"></a></div>
-											<div class="slide"><a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Pink Printed Dress"></a></div>
-											<div class="slide"><a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Pink Printed Dress"></a></div>
-										</div>
-									</div>
-								</div>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Pink Printed Dress</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Green Trousers"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Green Trousers"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">Green Trousers</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Aviator Sunglasses"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Men Aviator Sunglasses"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">NhĂ  Giáº£ Kim</a></h3></div>
-							</div>
-						</div>
-
-						<div class="product clearfix">
-							<div class="product-image">
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Black Polo Tshirt"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Black Polo Tshirt"></a>
-								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SĂ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
-								</div>
-							</div>
-							<div class="product-desc">
-								<div class="product-title"><h3><a href="#">SĂ¡ch Ba LĂ´ LĂªn VĂ  Ä�i</a></h3></div>
-							</div>
-						</div>
-
-					</div><!-- #shop end -->
+					</div>
+					</div>
 
 				</div>
-
+				<!-- #shop end -->
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="#"
+						aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">4</a></li>
+					<li class="page-item"><a class="page-link" href="#">5</a></li>
+					<li class="page-item"><a class="page-link" href="#"
+						aria-label="Next"><span aria-hidden="true">»</span></a></li>
+				</ul>
 			</div>
 
-		</section>
+		</div>
+
+	</section>
 
 </body>
 </html>
