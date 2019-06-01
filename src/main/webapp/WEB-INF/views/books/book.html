@@ -19,7 +19,7 @@
 				<div id="shop" class="shop grid-container clearfix"
 					data-layout="fitRows">
 
-					<div th:each="book : ${books}" class="product clearfix">
+					<div th:each="book: ${bookPage.getContent()}" class="product clearfix">
 						<div class="product-image">
 							 <a href="#">
 								<img th:src="@{${book.image}}" alt="Checked Short Dress">
@@ -47,15 +47,13 @@
 				</div>
 				<!-- #shop end -->
 				<ul class="pagination" style="padding-left: 500px"  >
-					<li class="page-item" ><a class="page-link" href="#"
-						aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
-					<li class="page-item" th:each="pageBook: ${bookPage}">
-					<a class="page-link" th:href="@{|/book/${pageBook}|}"  th:text="{pageBook.getNumber()}" >
-					</a>
-					</li>
+					<li class="page-item" ><a class="page-link" th:href="@{/book(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
 					
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"><span aria-hidden="true">»</span></a></li>
+					<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
+						<li class="page-item" th:classappend="${(bookPage.getNumber() == (i -1))} ? active : ''"><a class="page-link" th:text="${i}" th:href="@{/book(page=${i})}">0</a></li>
+					</th:block>
+					
+					<li class="page-item"><a class="page-link" th:href="@{/book(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 				</ul>
 			</div>
 
