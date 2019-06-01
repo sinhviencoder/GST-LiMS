@@ -17,7 +17,7 @@ public class BooksController {
 	
 	@Autowired
 	BookService bookService;
-
+//ok
 	@RequestMapping(value = "/book", method = RequestMethod.GET)
 	public String pageBook(Model model, Book book,
 			@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
