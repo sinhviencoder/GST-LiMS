@@ -3,6 +3,8 @@ package com.lims.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 
@@ -23,4 +25,5 @@ public interface BookService {
 	void delete(long id);
 
 	Book update(Book book);
+	Page<Book> getBookAll(Pageable pageable);
 }

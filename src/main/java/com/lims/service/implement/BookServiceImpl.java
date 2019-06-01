@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Service;
@@ -52,6 +54,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public DataTablesOutput<Book> getBookAll(DataTablesInput input) {
 		return bookRepository.findAll(input);
+	}
+
+	@Override
+	public Page<Book> getBookAll(Pageable pageable) {
+		return bookRepository.findAll(pageable);
 	}
 
 }
