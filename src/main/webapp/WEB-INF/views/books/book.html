@@ -19,11 +19,11 @@
 				<div id="shop" class="shop grid-container clearfix"
 					data-layout="fitRows">
 
-					<div th:each="book : ${books}" class="product clearfix">
+					<div th:each="book : ${bookPage}" class="product clearfix">
 						<div class="product-image">
-							 <a href="#">
-								<img th:src="@{${book.image}}" alt="Checked Short Dress">
-							 </a>
+							<a href="#"> <img th:src="@{${book.image}}"
+								alt="Checked Short Dress">
+							</a>
 							<div class="product-overlay">
 								<a href="#" class="add-to-cart"><i
 									class="icon-shopping-cart"></i><span>Muon sach</span></a> <a
@@ -42,22 +42,21 @@
 							<div class="product-rating">Nha xuat ban</div>
 						</div>
 					</div>
-					</div>
-
 				</div>
-				<!-- #shop end -->
-				<ul class="pagination" style="padding-left: 500px"  >
-					<li class="page-item" ><a class="page-link" href="#"
-						aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
-					<li class="page-item" th:each="pageBook: ${bookPage}">
-					<a class="page-link" th:href="@{|/book/${pageBook}|}"  th:text="{pageBook.getNumber()}" >
-					</a>
-					</li>
-					
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"><span aria-hidden="true">»</span></a></li>
-				</ul>
+
 			</div>
+			<!-- #shop end -->
+			<ul class="pagination" style="padding-left: 500px">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
+				<li class="page-item" th:each="pageNumber : ${pageNumbers}"><a
+					class="page-link" th:href="@{/book/page?{pageNumber}}"
+					th:text="${pageNumber}"> </a></li>
+
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Next"><span aria-hidden="true">»</span></a></li>
+			</ul>
+		</div>
 
 		</div>
 
