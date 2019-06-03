@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>HiliteUI Premium Bootstrap Admin Dashboard Template</title>
   <!-- base:css -->
-  <link rel="stylesheet" href="/admin/public/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="/admin/public/vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="/admin/public/vendors/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="/admin/oss/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/admin/oss/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/admin/oss/vendors/flag-icon-css/css/flag-icon.min.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="/admin/public/css/horizontal-layout-light/style.css">
+  <link rel="stylesheet" href="/admin/oss/css/horizontal-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="/admin/public/images/favicon.png" />
+  <link rel="shortcut icon" href="/admin/oss/images/favicon.png" />
 </head>
 
 <body>
@@ -28,19 +28,19 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <div class="brand-logo">
-                  <img src="/admin/public/images/logo-dark.svg" alt="logo">
+                  <img src="/admin/oss/images/logo-dark.svg" alt="logo">
                 </div>
                 <h4>Hello! let's get started</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
-                <form class="pt-3">
+                <form class="pt-3" action="/admin/user/login" method="post">
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                    <input type="email" name="email" value="admin@gmail.com" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="password" value="123456789o" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <div class="form-check">
@@ -50,14 +50,6 @@
                       </label>
                     </div>
                     <a href="#" class="auth-link text-black">Forgot password?</a>
-                  </div>
-                  <div class="mb-2">
-                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                      <i class="mdi mdi-facebook mr-2"></i>Connect using facebook
-                    </button>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    Don't have an account? <a href="register.html" class="text-primary">Create</a>
                   </div>
                 </form>
               </div>
@@ -71,14 +63,14 @@
   </div>
   <!-- container-scroller -->
   <!-- base:js -->
-  <script src="/admin/public/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/admin/oss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="/admin/public/js/off-canvas.js"></script>
-  <script src="/admin/public/js/hoverable-collapse.js"></script>
-  <script src="/admin/public/js/template.js"></script>
-  <script src="/admin/public/js/settings.js"></script>
-  <script src="/admin/public/js/todolist.js"></script>
+  <script src="/admin/oss/js/off-canvas.js"></script>
+  <script src="/admin/oss/js/hoverable-collapse.js"></script>
+  <script src="/admin/oss/js/template.js"></script>
+  <script src="/admin/oss/js/settings.js"></script>
+  <script src="/admin/oss/js/todolist.js"></script>
   <!-- endinject -->
 </body>
 

@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-public class SecurityAdminConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -31,8 +31,8 @@ public class SecurityAdminConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf()
 		.disable().authorizeRequests()
-		.antMatchers("/admin/public/dist/**").permitAll()
-//		.antMatchers("/admin/**").hasRole("ADMIN")
+		.antMatchers("/admin/oss/**").permitAll()
+		.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/**").permitAll()
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/admin/user/login").permitAll()

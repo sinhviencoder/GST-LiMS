@@ -56,9 +56,9 @@ public class DatabaseSeeder {
 
 	private void seedCategorysTable(String name) {
 		String sql = "SELECT name FROM category c WHERE c.name = \"" + name + "\" LIMIT 1";
-		List<Role> r = jdbcTemplate.query(sql, new RowMapper<Role>() {
+		List<Category> r = jdbcTemplate.query(sql, new RowMapper<Category>() {
 			@Override
-			public Role mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+			public Category mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 				return null;
 			}
 		});
