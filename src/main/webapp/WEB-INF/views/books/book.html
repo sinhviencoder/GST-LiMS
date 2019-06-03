@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{views/layouts/layout}">
 <head>
-	<title>Trang Chá»§</title>
+	<title>Trang Chủ</title>
 </head>
 
 <body class="stretched">
@@ -48,13 +48,13 @@
 					</div><!-- #shop end -->
 					
 					<ul class="pagination" style="padding-left: 500px"  >
-						<li class="page-item" ><a class="page-link" th:href="@{#/book-page(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">Â«</span></a></li>
+						<li class="page-item" ><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
 						
 						<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
 							<li class="page-item" th:classappend="${(bookPage.getNumber() == (i -1))} ? active : ''"><a class="page-link" th:text="${i}" th:href="@{/book-page(page=${i})}">0</a></li>
 						</th:block>
 						
-						<li class="page-item"><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">Â»</span></a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 					</ul>
 
 				</div>
