@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/admin-layout}">
     <head>
-        <title>User</title>
+        <title>Book</title>
     </head>
 	<th:block layout:fragment="stylesheets">
-       <link rel="stylesheet" href="/admin/public/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+       <link rel="stylesheet" href="/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-       <link rel="stylesheet" href="/admin/public/vendors/select2/select2.min.css">
-       <link rel="stylesheet" href="/admin/public/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
 	</th:block>
 	
 	<th:block layout:fragment="javascripts">
-	  	<script src="/admin/public/vendors/datatables.net/jquery.dataTables.js"></script>
-		<script src="/admin/public/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+	  	<script src="/admin/vendors/datatables.net/jquery.dataTables.js"></script>
+		<script src="/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 		<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-		<script src="/admin/public/vendors/select2/select2.min.js"></script>
-		<script type="text/javascript" src="" th:src="@{/admin/public/customer/js/jquery.spring-friendly.js}"></script>
-		<script type="text/javascript" src="../../public/customer/js/user.js" th:src="@{/admin/public/customer/js/user.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+		<script type="text/javascript" src="" th:src="@{/admin/customs/js/jquery.spring-friendly.js}"></script>
+		<script type="text/javascript" src="" th:src="@{/admin/customs/js/book.js}"></script>
 	</th:block>
     <body>
         <div layout:fragment="content" class="content-wrapper">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Management User</h4>
+              <h4 class="card-title">Management Book</h4>
               <div class="row">
                 <div class="col-12">
                   <ul class="nav nav-tabs" role="tablist">
@@ -30,7 +29,7 @@
                       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home-1" role="tab" aria-controls="home-1" aria-selected="true">Data</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-1" role="tab" aria-controls="profile-1" aria-selected="true">Add/Update</a>
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-1" role="tab" aria-controls="profile-1" aria-selected="false">Add/Update</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact-1" role="tab" aria-controls="contact-1" aria-selected="false">Detail</a>
@@ -41,20 +40,20 @@
 		            </li>
                   </ul>
                   <div class="tab-content">
-                    <div class="tab-pane fade show active" id="home-1" role="tabpanel" aria-labelledby="home-tab">
-	                  	<table id="user-datatable" class="table table-bordered display table-hover responsive nowrap table-striped" width="100%"></table>
+                    <div class="tab-pane active" id="home-1" role="tabpanel" aria-labelledby="home-tab">
+	                  	<table id="book-datatable" class="table table-bordered display table-hover responsive nowrap table-striped" width="100%"></table>
                     </div>
-                    <div class="tab-pane fade"id="profile-1" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade show" id="profile-1" role="tabpanel" aria-labelledby="profile-tab">
 			            <div class="col-md-12 grid-margin stretch-card">
 			              <div class="card">
 			                <div class="card-body">
-			                  <h4 class="card-title">User Form</h4>
-			                  <form id="form-user"></form>
+			                  <h4 class="card-title">Book Form</h4>
+			                  <form id="form-book"></form>
 			                </div>
 			              </div>
 			            </div>
                     </div>
-                    <div class="tab-pane fade" id="contact-1" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="tab-pane" id="contact-1" role="tabpanel" aria-labelledby="contact-tab">
                       <h4>Contact us </h4>
                       <p>
                         Feel free to contact us if you have any questions!
@@ -67,6 +66,10 @@
                         <i class="mdi mdi-email-outline text-success"></i>
                         contactus@example.com
                       </p>
+                        A.  <%= 27/3 %> 
+   B.  ${3 + 3 + 3} 
+   C.  <c:out value="9"> 
+   D.  "9" 
                     </div>
                   </div>
                 </div>

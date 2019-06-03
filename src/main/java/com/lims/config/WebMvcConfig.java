@@ -36,8 +36,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		// * 24);
 
 		registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
-		registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/oss/", "/WEB-INF/oss/demos/construction/", "/WEB-INF/customs/");
-		registry.addResourceHandler("/admin/**").addResourceLocations("/WEB-INF/admin/oss/", "/WEB-INF/admin/customs/");
+		registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/views/oss/", "/WEB-INF/views/oss/demos/construction/", "/WEB-INF/views/customs/");
+		registry.addResourceHandler("/admin/**").addResourceLocations("/WEB-INF/admin/oss/");
+		registry.addResourceHandler("/admin/customs/**").addResourceLocations("/WEB-INF/admin/customs/");
 
 	}
 

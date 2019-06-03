@@ -32,13 +32,13 @@ public class AdminUserController {
 
 	@RequestMapping(value = "/admin/user", method = RequestMethod.GET)
 	public String listUsers(Model model) {
-		return "admin/users/admin-user";
+		return "admin/admin-user";
 	}
 	
 	@RequestMapping(value = "/admin/user/add", method = RequestMethod.GET)
 	public String getForm(Model model, User user) {
 		model.addAttribute("roles", roleService.findAll());
-		return "admin/users/admin-user-form :: form";
+		return "admin/admin-user-form :: form";
 	}
 
 	@RequestMapping(value = "/admin/user/add", method = RequestMethod.POST)
@@ -46,11 +46,11 @@ public class AdminUserController {
 		model.addAttribute("roles", roleService.findAll());
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("isSuccess", false);
-			return "admin/users/admin-user-form :: form";
+			return "admin/admin-user-form :: form";
 		}
 		userRepository.save(user);
 		model.addAttribute("isSuccess", true);
-		return "admin/users/admin-user-form :: form";
+		return "admin/admin-user-form :: form";
 	}
 
 	@RequestMapping(value = "/admin/user/login", method = RequestMethod.GET)
@@ -59,7 +59,7 @@ public class AdminUserController {
 			model.addAttribute("error", "Your username and password is invalid.");
 		if (logout != null)
 			model.addAttribute("message", "You have been logged out successfully.");
-		return "admin/users/admin-user-login";
+		return "admin/admin-user-login";
 	}
 
 	@RequestMapping(value = "/admin/user/datatable", method = RequestMethod.GET)

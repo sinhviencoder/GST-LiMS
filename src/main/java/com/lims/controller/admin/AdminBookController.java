@@ -32,14 +32,14 @@ public class AdminBookController {
 
 	@RequestMapping(value = "/admin/book", method = RequestMethod.GET)
 	public String pageBook() {
-		return "admin/books/admin-book";
+		return "admin/admin-book";
 	}
 
 	@RequestMapping(value = "/admin/book/add", method = RequestMethod.GET)
 	public String getForm(Model model, Book book) {
 		model.addAttribute("categorys", categoryService.getCategoryAll());
 		model.addAttribute("authors", authorService.getAuthorAll());
-		return "admin/books/admin-book-form :: form";
+		return "admin/admin-book-form :: form";
 	}
 
 	@RequestMapping(value = "/admin/book/add", method = RequestMethod.POST)
@@ -48,11 +48,11 @@ public class AdminBookController {
 		model.addAttribute("authors", authorService.getAuthorAll());
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("isSuccess", false);
-			return "admin/books/admin-book-form :: form";
+			return "admin/admin-book-form :: form";
 		}
 		bookService.save(book);
 		model.addAttribute("isSuccess", true);
-		return "admin/books/admin-book-form :: form";
+		return "admin/admin-book-form :: form";
 	}
 
 	@RequestMapping(value = "/admin/book/datatable", method = RequestMethod.GET)

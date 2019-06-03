@@ -27,7 +27,7 @@ public class BooksController {
 		model.addAttribute("books", bookService.getBookdAll());
 		Page<Book> bookPage = bookService.getBookAll(new PageRequest(page, 8));
 		model.addAttribute("bookPage", bookPage);
-		return "views/books/book";
+		return "views/book";
 	}
 
 	@RequestMapping(value = "/book-page", method = RequestMethod.GET)
@@ -38,6 +38,6 @@ public class BooksController {
 		model.addAttribute("books", bookService.getBookdAll());
 		Page<Book> bookPage = bookService.getBookAll(new PageRequest(page, 8));
 		model.addAttribute("bookPage", bookPage);
-		return "views/books/book-page :: #content";
+		return "views/book-page :: #content";
 	}
 }
