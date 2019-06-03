@@ -23,6 +23,7 @@ public class Book {
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	private int count;
+	private String image;
 	private String description;
 	private int status;
 
@@ -64,6 +65,14 @@ public class Book {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getDescription() {

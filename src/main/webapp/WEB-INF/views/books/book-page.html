@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Trang Chủ</title>
+</head>
+
+<body class="stretched">
+	<section id="content">
+
+		<div class="content-wrap">
+
+			<div class="container clearfix">
+
+				<!-- Shop
+					============================================== -->
+				<div id="shop" class="shop grid-container clearfix"
+					data-layout="fitRows">
+
+					<div th:each="book: ${bookPage.getContent()}" class="product clearfix">
+						<div class="product-image">
+							 <a href="#">
+								<img th:src="@{${book.image}}" alt="Checked Short Dress">
+							 </a>
+							<div class="product-overlay">
+								<a href="#" class="add-to-cart"><i
+									class="icon-shopping-cart"></i><span>Muon sach</span></a> <a
+									href="include/ajax/shop-item.html" class="item-quick-view"
+									data-lightbox="ajax"><i class="fa fa-book"></i><span>
+										Đọc trước</span></a>
+							</div>
+						</div>
+						<div class="product-desc">
+							<div class="product-title">
+								<h3>
+									<a href="#"><p th:text="${book.name}"></p></a>
+								</h3>
+							</div>
+							<span th:if="${book.author!=null}" th:text="${book.author.name}"></span>
+							<div class="product-rating">Nha xuat ban</div>
+						</div>
+					</div>
+					</div>
+
+				</div>
+				<!-- #shop end -->
+				<ul class="pagination" style="padding-left: 500px"  >
+					<li class="page-item" ><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
+					
+					<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
+						<li class="page-item" th:classappend="${(bookPage.getNumber() == (i -1))} ? active : ''"><a class="page-link" th:text="${i}" th:href="@{/book-page(page=${i})}">0</a></li>
+					</th:block>
+					
+					<li class="page-item"><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+				</ul>
+			</div>
+
+		</div>
+	</section>
+
+</body>
+</html>
