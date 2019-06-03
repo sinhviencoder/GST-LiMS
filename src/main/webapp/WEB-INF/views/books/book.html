@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{views/layouts/layout}">
 <head>
-	<title>Trang Chủ</title>
+	<title>Trang Chá»§</title>
 </head>
 
 <body class="stretched">
+		<section layout:fragment="page-title" id="page-title" class="page-title-mini page-title-right">
+
+			<div class="container clearfix">
+				<h1>News</h1>
+				<span>A Short Page Title Tagline</span>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Book</li>
+				</ol>
+			</div>
+
+		</section>
 		<section layout:fragment="content" id="content">
 
 			<div class="content-wrap">
@@ -20,8 +32,8 @@
 								<a href="#" ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
 								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SÃ¡ch</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
@@ -36,13 +48,13 @@
 					</div><!-- #shop end -->
 					
 					<ul class="pagination" style="padding-left: 500px"  >
-						<li class="page-item" ><a class="page-link" th:href="@{#/book-page(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
+						<li class="page-item" ><a class="page-link" th:href="@{#/book-page(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">Â«</span></a></li>
 						
 						<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
 							<li class="page-item" th:classappend="${(bookPage.getNumber() == (i -1))} ? active : ''"><a class="page-link" th:text="${i}" th:href="@{/book-page(page=${i})}">0</a></li>
 						</th:block>
 						
-						<li class="page-item"><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">Â»</span></a></li>
 					</ul>
 
 				</div>

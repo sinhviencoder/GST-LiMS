@@ -5,7 +5,7 @@
 <title>Trang Chủ</title>
 </head>
 <body>
-		<section id="slider" class="slider-element slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">
+		<section layout:fragment="slider" id="slider" class="slider-element slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">
 
 			<div class="swiper-container swiper-parent">
 				<div class="swiper-wrapper">
@@ -45,6 +45,9 @@
 				<div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
 			</div>
 
+		</section>
+		<section layout:fragment="content" id="content">
+			<h3>Đây là content và chưa có gì cho này hiện danh sách Tóp đọc nhiều nhất</h3>
 		</section>
 </body>
 </html>
