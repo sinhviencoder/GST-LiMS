@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{views/layouts/layout}">
+<head>
+	<title>Đăng Nhập</title>
+</head>
+<body class="stretched">
+		<section layout:fragment="page-title" id="page-title" class="page-title-mini page-title-right">
+
+			<div class="container clearfix">
+				<h1>Dăng Nhập - Đăng Ký</h1>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Đăng Nhập</li>
+				</ol>
+			</div>
+
+		</section>
+
+		<section layout:fragment="content" id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<div class="accordion accordion-lg divcenter nobottommargin clearfix" style="max-width: 550px;">
+
+						<div class="acctitle"><i class="acc-closed icon-lock3"></i><i class="acc-open icon-unlock"></i>Đăng Nhập Tài Khoản Của Bạn</div>
+						<div class="acc_content clearfix">
+							<form class="nobottommargin" action="/login" method="post">
+								<div class="col_full">
+									<label for="login-form-username">Email:</label>
+									<input type="text" name='email' value='admin@gmail.com'class="form-control" />
+								</div>
+
+								<div class="col_full">
+									<label for="login-form-password">Mật Khẩu:</label>
+									<input type="password" name='password' value="123456789o" class="form-control" />
+								</div>
+
+								<div class="col_full nobottommargin">
+									<button type="submit" class="button button-3d button-black nomargin">Đăng Nhập</button>
+									<a href="#" class="fright">Quên Mật Khẩu?</a>
+								</div>
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+</body>
+</html>
