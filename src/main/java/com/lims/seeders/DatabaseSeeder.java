@@ -1,9 +1,6 @@
 package com.lims.seeders;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -11,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -33,17 +28,15 @@ public class DatabaseSeeder {
 	private UserRepository userRepository;
 	private RoleRepository roleRepository;
 	private CategoryRepository categoryRepository;
-	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 
 	public DatabaseSeeder(UserRepository userRepository, RoleRepository roleRepository,
-			CategoryRepository categoryRepository, JdbcTemplate jdbcTemplate) {
+			CategoryRepository categoryRepository) {
 		super();
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
 		this.categoryRepository = categoryRepository;
-		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@EventListener
@@ -55,14 +48,10 @@ public class DatabaseSeeder {
 	}
 
 	private void seedCategorysTable(String name) {
-		String sql = "SELECT name FROM category c WHERE c.name = \"" + name + "\" LIMIT 1";
-		List<Category> r = jdbcTemplate.query(sql, new RowMapper<Category>() {
-			@Override
-			public Category mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-				return null;
-			}
-		});
-		if (r == null || r.size() <= 0) {
+
+		Category categoryCheck = categoryRepository.findTopByOrderByNameDesc();
+
+		if (categoryCheck == null) {
 			Category category = new Category();
 			category.setName(name);
 			categoryRepository.save(category);
@@ -70,14 +59,10 @@ public class DatabaseSeeder {
 	}
 
 	private void seedRolesTable(String roleName) {
-		String sql = "SELECT name FROM role r WHERE r.name = \"" + roleName + "\" LIMIT 1";
-		List<Role> r = jdbcTemplate.query(sql, new RowMapper<Role>() {
-			@Override
-			public Role mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-				return null;
-			}
-		});
-		if (r == null || r.size() <= 0) {
+
+		Role r = roleRepository.findByName(roleName);
+
+		if (r == null) {
 			Role role = new Role();
 			role.setName(roleName);
 			roleRepository.save(role);
@@ -85,14 +70,9 @@ public class DatabaseSeeder {
 	}
 
 	private void seedUsersTable() {
-		String sql = "SELECT username FROM user U WHERE U.username = \"admin@gmail.com\" LIMIT 1";
-		List<User> u = jdbcTemplate.query(sql, new RowMapper<User>() {
-			@Override
-			public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-				return null;
-			}
-		});
-		if (u == null || u.size() <= 0) {
+		User userCheck = userRepository.findByUsername("admin@gmail.com");
+
+		if (userCheck == null) {
 			User user = new User();
 			user.setFirstName("Nguyen");
 			user.setLastName("Trinh");

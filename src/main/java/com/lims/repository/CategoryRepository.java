@@ -11,4 +11,6 @@ public interface CategoryRepository extends DataTablesRepository<Category, Long>
 	// Select category Perant
 	List<Category> findByCategoryParentIsNull();
 
+	Category findTopByOrderByNameDesc();
+
 }
