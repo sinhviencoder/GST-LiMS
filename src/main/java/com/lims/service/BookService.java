@@ -13,7 +13,7 @@ import com.lims.entity.Book;
 public interface BookService {
 
 	Iterable<Book> getBookdAll();
-
+	List<Book> getTopBook();
 	Page<Book> getBookAll(Pageable pageable);
 	
 	DataTablesOutput<Book> getBookAll(DataTablesInput input);

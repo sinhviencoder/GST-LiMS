@@ -64,4 +64,10 @@ public class BookServiceImpl implements BookService {
 	}
 
 
+	@Override
+	public List<Book> getTopBook() {
+		return bookRepository.topBook();
+	}
+
+
 }

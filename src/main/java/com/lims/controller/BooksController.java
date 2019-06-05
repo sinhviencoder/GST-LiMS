@@ -1,5 +1,7 @@
 package com.lims.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lims.entity.Book;
 import com.lims.service.BookService;
@@ -39,5 +42,10 @@ public class BooksController {
 		Page<Book> bookPage = bookService.getBookAll(new PageRequest(page, 8));
 		model.addAttribute("bookPage", bookPage);
 		return "views/book-page :: #content";
+	}
+	@RequestMapping(value="/top", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Book> getTop() {
+		return bookService.getTopBook();
 	}
 }
