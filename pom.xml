@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.lims</groupId>
-	<artifactId>LiMS</artifactId>
+	<artifactId>GST-LiMS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>LiMS</name>
+	<name>GST-LiMS</name>
 	<description>LiMS project for Spring Boot</description>
 
 	<parent>
@@ -44,11 +44,11 @@
 			<version>5.0.0</version>
 		</dependency>
 		
-		<!-- <dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>
 		
 		<dependency>
 			<groupId>org.hsqldb</groupId>
