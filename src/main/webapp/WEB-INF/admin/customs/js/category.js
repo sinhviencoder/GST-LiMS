@@ -41,32 +41,26 @@
     });
 
 	
-	$('#profile-tab').on('click', function(e) {
-		$.ajax({
-			type : "GET",
-			url : "/admin/user/add",
-			global : false,
-			success : function(data) {
-				console.log(data);
-				$("form#form-user" ).replaceWith(data);
-			},
-			error : function(error) {
-				console.log(error);
-			}
+	$('#category-get-form').on('click', function(e) {
+		$("form#form-category").load("/admin/category/add-ajax", function(data) {
+			//console.log(data);
+			$('form#form-category').submit(false);
 		});
 	});
+	
+	$('form#form-category ').on('click', '#category-submit-ajax', function(e) {
+		saveCategory();
+	});
     
-  	function saveUser() {
-  		var data = $('form#form-user').serialize();
-			console.log(data);
+  	function saveCategory() {
 			$.ajax({
 				type : "POST",
-				url : "/admin/user/add",
-				data : data,
+				url : "/admin/category/add-ajax",
+				data : $('form#form-category').serialize(),
 				global : false,
 				success : function(data) {
 					console.log(data);
-					$( "form#form-user" ).replaceWith(data);
+					$('form#form-category').html($(data));
 				},
 				error : function(error) {
 					console.log(error);
