@@ -33,7 +33,7 @@ public class BooksController {
 		model.addAttribute("bookPage", bookPage);
 		return "views/book";
 	}
-
+  
 	@RequestMapping(value = "/book-page", method = RequestMethod.GET)
 	public String pageBookPage(Model model, Book book,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
