@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,5 +48,11 @@ public class BooksController {
 	@ResponseBody
 	public List<Book> getTop() {
 		return bookService.getTopBook();
+	}
+	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+	public String getDetailBook(Model model, @PathVariable("id") int id
+			) {
+		System.out.println("gau gau");
+		return"views/book-detail :: #content";
 	}
 }

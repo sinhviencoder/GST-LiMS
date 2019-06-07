@@ -18,11 +18,11 @@
 
 						<div class="product clearfix" th:each="book: ${bookPage.getContent()}">
 							<div class="product-image">
-								<a href="#" ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
+								<a th:href="@{/book/{id}(id=${book.bookId})}"  ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
+								
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SÃ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn sách</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc trước</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
