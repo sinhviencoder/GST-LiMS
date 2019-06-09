@@ -5,16 +5,22 @@ $('#content').on('click', '.pagination a', function(e) {
 
 $('#content').on("click", "a.add-to-cart", function(){
   var bookId =  $(this).attr("data");
-  console.log("ok", bookId);
+  console.log("a.add-to-cart", bookId);
   
-  $('#modal-book-cart').load("/book/cart/add?bookId=1 #modal-book-cart > *", function() {
-	console.log("ok");
+  $('#modal-book-cart').load("/book/cart/add?bookId=" + bookId+ " #modal-book-cart > *", function() {
+	console.log("#modal-book-cart");
 	
 	$('#modal-book-cart').modal('toggle');
-//	$('#modal-cart').modal('show');
-//	$('#modal-cart').modal('hide');
-	
   });
   
-})
+});
+
+$('#modal-book-cart').on("click", "#confirm-book-order", function(){
+	var bookId =  $(this).val();
+	$('#modal-book-cart').load("/book/order/confirm?bookId=" + bookId+ " #modal-book-cart > *", function() {
+		console.log("#confirm-book-order okoko11111111");
+		
+	});
+	
+});
 

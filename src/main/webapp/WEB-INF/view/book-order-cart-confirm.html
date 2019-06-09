@@ -1,0 +1,46 @@
+								  <div sec:authorize="isAuthenticated()" th:if="${bookOrder != null}" class="modal" id="modal-book-cart">
+								    <div class="modal-dialog">
+								      <div class="modal-content">
+								      
+								        <!-- Modal Header -->
+								        <div class="modal-header">
+								          <h4 class="modal-title">Mượn Sách Thành Công</h4>
+								          <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        </div>
+								        
+								        <!-- Modal body -->
+								        <div class="modal-body">
+									        <div class="alert alert-success">
+											  <strong>Success!</strong> Bạn đã đặt mượn sách.
+											  <span>Ngày trả: 12/4/2019</span>
+											</div>
+									        <table border="1px">
+									        	<tr>
+									        		<td>#</td>
+									        		<td th:utext="${bookOrder.bookId}"></td>
+									        	</tr>
+									        	<tr>
+									        		<td>Tên Sách</td>
+									        		<td th:utext="${bookOrder.name}"></td>
+									        	</tr>
+									        	<tr>
+									        		<td>Tác giải</td>
+									        		<td th:utext="${ bookOrder.author != null ? bookOrder.author.authorId : 'không có'}">none</td>
+									        	</tr>
+									        	<tr>
+									        		<td>Ngày Cuối Cùng Nhận Sách</td>
+									        		<td th:utext="${#dates.format(endDateOrder, 'dd/MMM/yyyy')}">none</td>
+									        	</tr>
+									        
+									        </table>
+								        
+								        </div>
+								        
+								        <!-- Modal footer -->
+								        <div class="modal-footer">
+								          <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
+								        </div>
+								        
+								      </div>
+								    </div>
+								  </div>

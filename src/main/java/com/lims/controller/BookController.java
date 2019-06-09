@@ -1,6 +1,8 @@
 package com.lims.controller;
 
 import java.security.Principal;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lims.entity.Book;
+import com.lims.entity.OrderDetail;
 import com.lims.repository.BookRepository;
+import com.lims.repository.OrderDetailRepository;
 import com.lims.service.BookService;
 import com.lims.service.CategoryService;
 
@@ -21,6 +25,9 @@ public class BookController {
 
 	@Autowired
 	BookService bookService;
+	
+	@Autowired
+	OrderDetailRepository orderDetailRepository;
 
 	@Autowired
 	CategoryService categoryService;
@@ -51,17 +58,61 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/book/cart/add", method = RequestMethod.GET)
-	public String oderDetail(@RequestParam(value = "bookId", required = true) Long bookId, final Principal principal,
+	public String checkOrder(@RequestParam(value = "bookId", required = true) Long bookId, final Principal principal,
+			Model model) {
+
+		// check quantity book store >1 And check cout user order book (countOrder < (quantityBook -1))
+		// check user muon truoc do hay chua
+		
+		Book bookOrder = bookRepository.findByBookIdAndCountGreaterThanAndQuatityGreaterThan(bookId, 1, 1);
+		System.out.println(bookOrder != null ? bookOrder.getName() : "");
+		model.addAttribute("bookOrder", bookOrder);
+
+		Date endDateOrder = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(endDateOrder);
+		c.add(Calendar.DATE, 2);
+		endDateOrder = c.getTime();
+
+		model.addAttribute("endDateOrder", endDateOrder);
+		if (null == principal)
+			return "view/book-order-cart";
+		return "view/book-order-cart";
+	}
+
+	@RequestMapping(value = "/book/order/confirm", method = RequestMethod.GET)
+	public String confirmOrder(@RequestParam(value = "bookId", required = true) Long bookId, final Principal principal,
 			Model model) {
 
 		// check quantity book store >1
 		// And check cout user order book (countOrder < (quantityBook -1))
 
 		Book bookOrder = bookRepository.findByBookIdAndCountGreaterThanAndQuatityGreaterThan(bookId, 1, 1);
-		System.out.println(bookOrder.getName());
+		System.out.println(bookOrder != null ? bookOrder.getName() : "");
 		model.addAttribute("bookOrder", bookOrder);
+		if (bookOrder == null)
+			return "view/book-order-cart";
+
+		Date endDateOrder = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(endDateOrder);
+		c.add(Calendar.DATE, 2);
+		endDateOrder = c.getTime();
+
+		model.addAttribute("endDateOrder", endDateOrder);
 		if (null == principal)
 			return "view/book-order-cart";
-		return "view/book-order-cart";
+
+		// update book count
+		bookOrder.setCount(bookOrder.getCount() - 1);
+//		bookService.save(bookOrder);
+		
+		OrderDetail orderBook = new OrderDetail();
+		orderBook.setBook(bookOrder);
+		orderBook.setEndDate(endDateOrder);
+		System.out.println(bookOrder.getCount() + "ok");
+		
+		orderDetailRepository.save(orderBook);
+		return "view/book-order-cart-confirm";
 	}
 }
