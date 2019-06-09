@@ -6,13 +6,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @SuppressWarnings("deprecation")
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-
+	
+	@Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
+    }
+	
 	// Custom config messages validate form
 	@Bean
 	public MessageSource messageSource() {
@@ -36,7 +42,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		// * 24);
 
 		registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
-		registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/views/oss/", "/WEB-INF/views/oss/demos/construction/", "/WEB-INF/views/customs/");
+		registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/view/oss/", "/WEB-INF/view/oss/demos/construction/", "/WEB-INF/view/customs/");
 		registry.addResourceHandler("/admin/oss/**").addResourceLocations("/WEB-INF/admin/oss/");
 		registry.addResourceHandler("/admin/customs/**").addResourceLocations("/WEB-INF/admin/customs/");
 

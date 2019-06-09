@@ -37,12 +37,12 @@
 	                    <label th:for="category-parent" class="col-sm-3 col-form-label">Category Parent</label>
 	                    <div class="col-sm-9">
 		                    <select class="form-control form-control-lg" id="category-parent"  th:field="*{categoryParent}">
+		                      <option value="" >--Choose Category Parent--</option>
 		                      <option th:each="category : ${categorys}" th:value="${category.categoryId}" th:utext="${category.name}">None</option>
 		                    </select>
 	                    </div>
 	                  </div>
-					  <button id="category-submit" type="submit" class="btn btn-primary mr-2" >Save</button>
-					  <button id="category-submit-ajax" type="button" class="btn btn-primary mr-2" >Save Ajax</button>
+					  <button type="submit" class="btn btn-primary mr-2" >Save</button>
 					</form>
                 </div>
               </div>

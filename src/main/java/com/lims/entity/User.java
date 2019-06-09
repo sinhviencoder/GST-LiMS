@@ -13,8 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * @author Nguyen Van Trinh
  *
@@ -37,7 +35,6 @@ public class User{
 	private String username;
 	@NotEmpty(message = "Vui lòng nhập password")
 	@Column(name = "password", nullable = false)
-	@JsonIgnore
 	private String password;
 	private int status;
 

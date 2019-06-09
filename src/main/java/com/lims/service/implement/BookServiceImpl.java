@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
@@ -45,7 +44,6 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void delete(long id) {
 		bookRepository.deleteById(id);
-		;
 	}
 
 	@Override
@@ -61,6 +59,12 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public Page<Book> getBookAll(Pageable pageable) {
 		return bookRepository.findAll(pageable);
+	}
+
+
+	@Override
+	public Book getBookCheckOrder(long bookId) {
+		return null;
 	}
 
 

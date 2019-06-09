@@ -13,13 +13,13 @@ import com.lims.entity.Book;
 import com.lims.service.BookService;
 
 @Controller
-public class BooksController {
-
+@RequestMapping(value = "/category")
+public class CategoryController {
 	
 	@Autowired
 	BookService bookService;
 
-	@RequestMapping(value = {"/book"}, method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String pageBook(Model model, Book book,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
@@ -27,7 +27,7 @@ public class BooksController {
 		model.addAttribute("books", bookService.getBookdAll());
 		Page<Book> bookPage = bookService.getBookAll(new PageRequest(page, 8));
 		model.addAttribute("bookPage", bookPage);
-		return "views/book";
+		return "view/book";
 	}
 
 	@RequestMapping(value = "/book-page", method = RequestMethod.GET)
@@ -38,6 +38,7 @@ public class BooksController {
 		model.addAttribute("books", bookService.getBookdAll());
 		Page<Book> bookPage = bookService.getBookAll(new PageRequest(page, 8));
 		model.addAttribute("bookPage", bookPage);
-		return "views/book-page :: #content";
+		return "view/book-pagination :: #content";
 	}
+	
 }

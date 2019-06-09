@@ -1,0 +1,78 @@
+<html dir="ltr" lang="en-US" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+		<header layout:fragment="header" id="header" class="sticky-style-2">
+
+			<div class="container clearfix">
+
+				<!-- Logo
+				============================================= -->
+				<div id="logo">
+					<a href="/" class="standard-logo"><img src="/demos/construction/images/logo.png" alt="Canvas Logo"></a>
+					<a href="/" class="retina-logo"><img src="/demos/construction/images/logo@2x.png" alt="Canvas Logo"></a>
+				</div><!-- #logo end -->
+
+				<ul class="header-extras">
+					<li>
+						<i class="i-plain icon-call nomargin"></i>
+						<div class="he-text">
+							Call Us
+							<span>(91) 22 54215821</span>
+						</div>
+					</li>
+					<li>
+						<i class="i-plain icon-line2-envelope nomargin"></i>
+						<div class="he-text">
+							Email Us
+							<span>info@canvas.com</span>
+						</div>
+					</li>
+					<li>
+						<i class="i-plain icon-line-clock nomargin"></i>
+						<div class="he-text">
+							We'are Open
+							<span>Mon - Sat, 10AM to 6PM</span>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+			<div id="header-wrap">
+
+				<!-- Primary Navigation
+				============================================= -->
+				<nav id="primary-menu" class="with-arrows style-2 center">
+
+					<div class="container clearfix">
+
+						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+						<ul>
+							<li th:each="categoryRoot : ${categoryRoots}"><a href="#"><div th:utext="${categoryRoot.name}">Menu0</div></a>
+								<ul th:if="${categoryRoot.categoryChildrens != null and !categoryRoot.categoryChildrens.isEmpty()}">
+									<li th:each="category1 : ${categoryRoot.categoryChildrens}"><a href="#" th:utext="${category1.name}"><div>Menu1</div></a>
+										<ul th:if="${category1.categoryChildrens != null and !category1.categoryChildrens.isEmpty()}">
+											<li th:each="category2 : ${category1.categoryChildrens}"><a href="#" th:utext="${category2.name}"><div>Menu2</div></a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+
+						<!-- Top Search
+						============================================= -->
+						<div id="top-search">
+							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+							<form action="search.html" method="get">
+								<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+							</form>
+						</div><!-- #top-search end -->
+
+					</div>
+
+				</nav><!-- #primary-menu end -->
+
+			</div>
+
+		</header>

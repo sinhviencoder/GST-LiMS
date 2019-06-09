@@ -37,7 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.disable().authorizeRequests()
 				.and().formLogin()
 				.loginPage("/login").permitAll()
-				.usernameParameter("email").passwordParameter("password")
+				.usernameParameter("email")
+				.passwordParameter("password")
+				.failureUrl("/login?error=loidangnhap")
 				.defaultSuccessUrl("/").and().logout().deleteCookies("remember-me").permitAll()
 				.and().rememberMe().tokenValiditySeconds(180);
 	  }

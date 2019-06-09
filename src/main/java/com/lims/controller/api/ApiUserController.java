@@ -3,7 +3,6 @@ package com.lims.controller.api;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lims.config.AuthoritiesConstants;
 import com.lims.entity.User;
 import com.lims.service.UserService;
 import com.util.ErrorUtils;
@@ -21,7 +19,7 @@ import com.util.ErrorUtils;
 
 @RestController
 @RequestMapping("/api/user")
-@Secured({ AuthoritiesConstants.ADMIN})
+//@Secured({ AuthoritiesConstants.ADMIN})
 public class ApiUserController {
 
 	private UserService userService;

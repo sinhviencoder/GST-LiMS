@@ -60,11 +60,13 @@ public class AdminCategoryController {
 	public String saveAjax(@Valid Category category, BindingResult bindResult, Model model) {
 		model.addAttribute("categorys", categoryService.getCategoryAll());
 		if (bindResult.hasErrors()) {
+			model.addAttribute("isSuccess", false);
 			return "admin/admin-category-form-ajax :: form";
 		}
 		
 		categoryService.save(category);
-		
+		model.addAttribute("isSuccess", true);
+		model.addAttribute("category", new Category());
 		return "admin/admin-category-form-ajax :: form";
 	}
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -78,9 +79,10 @@
 									<li><a href="#">Amsterdam</a></li>
 								</ul>
 							</li>
-							<li><a href="/login">Đăng Nhập</a></li>
-							<li><a href="#">Đăng Ký</a></li>
+							<li sec:authorize="!isAuthenticated()"><a href="/login">Đăng Nhập</a></li>
+							<li sec:authorize="!isAuthenticated()"><a href="#">Đăng Ký</a></li>
 							<li><a href="#">Liện Hệ</a></li>
+							<li sec:authorize="isAuthenticated()" th:if="${user != null}"><a href="#" th:utext="${user.lastName}">Liện Hệ</a></li>
 						</ul>
 					</div><!-- .top-links end -->
 
@@ -90,180 +92,14 @@
 
 		</div><!-- #top-bar end -->
 
-		<!-- Header
-		============================================= -->
-		<header id="header" class="sticky-style-2">
-
-			<div class="container clearfix">
-
-				<!-- Logo
-				============================================= -->
-				<div id="logo">
-					<a href="/" class="standard-logo"><img src="/demos/construction/images/logo.png" alt="Canvas Logo"></a>
-					<a href="/" class="retina-logo"><img src="/demos/construction/images/logo@2x.png" alt="Canvas Logo"></a>
-				</div><!-- #logo end -->
-
-				<ul class="header-extras">
-					<li>
-						<i class="i-plain icon-call nomargin"></i>
-						<div class="he-text">
-							Call Us
-							<span>(91) 22 54215821</span>
-						</div>
-					</li>
-					<li>
-						<i class="i-plain icon-line2-envelope nomargin"></i>
-						<div class="he-text">
-							Email Us
-							<span>info@canvas.com</span>
-						</div>
-					</li>
-					<li>
-						<i class="i-plain icon-line-clock nomargin"></i>
-						<div class="he-text">
-							We'are Open
-							<span>Mon - Sat, 10AM to 6PM</span>
-						</div>
-					</li>
-				</ul>
-
-			</div>
-
-			<div id="header-wrap">
-
-				<!-- Primary Navigation
-				============================================= -->
-				<nav id="primary-menu" class="with-arrows style-2 center">
-
-					<div class="container clearfix">
-
-						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-						<ul>
-							<li><a href="index.html"><div>Home</div></a>
-								<ul>
-									<li><a href="index-corporate.html"><div>Home - Corporate</div></a>
-										<ul>
-											<li><a href="index-corporate.html"><div>Corporate - Layout 1</div></a></li>
-											<li><a href="index-corporate-2.html"><div>Corporate - Layout 2</div></a></li>
-											<li><a href="index-corporate-3.html"><div>Corporate - Layout 3</div></a></li>
-											<li><a href="index-corporate-4.html"><div>Corporate - Layout 4</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-portfolio.html"><div>Home - Portfolio</div></a>
-										<ul>
-											<li><a href="index-portfolio.html"><div>Portfolio - Layout 1</div></a></li>
-											<li><a href="index-portfolio-2.html"><div>Portfolio - Layout 2</div></a></li>
-											<li><a href="index-portfolio-3.html"><div>Portfolio - Masonry</div></a></li>
-											<li><a href="index-portfolio-4.html"><div>Portfolio - AJAX</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-blog.html"><div>Home - Blog</div></a>
-										<ul>
-											<li><a href="index-blog.html"><div>Blog - Layout 1</div></a></li>
-											<li><a href="index-blog-2.html"><div>Blog - Layout 2</div></a></li>
-											<li><a href="index-blog-3.html"><div>Blog - Layout 3</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-shop.html"><div>Home - Shop</div></a>
-										<ul>
-											<li><a href="index-shop.html"><div>Shop - Layout 1</div></a></li>
-											<li><a href="index-shop-2.html"><div>Shop - Layout 2</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-magazine.html"><div>Home - Magazine</div></a>
-										<ul>
-											<li><a href="index-magazine.html"><div>Magazine - Layout 1</div></a></li>
-											<li><a href="index-magazine-2.html"><div>Magazine - Layout 2</div></a></li>
-											<li><a href="index-magazine-3.html"><div>Magazine - Layout 3</div></a></li>
-										</ul>
-									</li>
-									<li><a href="landing.html"><div>Home - Landing Page</div></a>
-										<ul>
-											<li><a href="landing.html"><div>Landing Page - Layout 1</div></a></li>
-											<li><a href="landing-2.html"><div>Landing Page - Layout 2</div></a></li>
-											<li><a href="landing-3.html"><div>Landing Page - Layout 3</div></a></li>
-											<li><a href="landing-4.html"><div>Landing Page - Layout 4</div></a></li>
-											<li><a href="landing-5.html"><div>Landing Page - Layout 5</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-fullscreen-image.html"><div>Home - Full Screen</div></a>
-										<ul>
-											<li><a href="index-fullscreen-image.html"><div>Full Screen - Image</div></a></li>
-											<li><a href="index-fullscreen-slider.html"><div>Full Screen - Slider</div></a></li>
-											<li><a href="index-fullscreen-video.html"><div>Full Screen - Video</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-onepage.html"><div>Home - One Page</div></a>
-										<ul>
-											<li><a href="index-onepage.html"><div>One Page - Default</div></a></li>
-											<li><a href="index-onepage-2.html"><div>One Page - Submenu</div></a></li>
-											<li><a href="index-onepage-3.html"><div>One Page - Dots Style</div></a></li>
-										</ul>
-									</li>
-									<li><a href="index-wedding.html"><div>Home - Wedding</div></a></li>
-									<li><a href="index-restaurant.html"><div>Home - Restaurant</div></a></li>
-									<li><a href="index-events.html"><div>Home - Events</div></a></li>
-									<li><a href="index-parallax.html"><div>Home - Parallax</div></a></li>
-									<li><a href="index-app-showcase.html"><div>Home - App Showcase</div></a></li>
-									<li><a href="index-boxed.html"><div>Home - Boxed Layout</div></a></li>
-								</ul>
-							</li>
-							<li><a href="services.html"><div>What we do</div></a>
-								<ul>
-									<li><a href="#"><div>Housing Management</div></a></li>
-									<li><a href="#"><div>Construction Planning</div></a></li>
-									<li><a href="#"><div>Green Homes</div></a></li>
-									<li><a href="#"><div>Architecture Design</div></a></li>
-									<li><a href="#"><div>Interior Planning</div></a></li>
-								</ul>
-							</li>
-							<li><a href="about-us.html"><div>About Us</div></a></li>
-							<li><a href="projects.html"><div>Projects</div></a>
-								<ul>
-									<li><a href="projects-2.html"><div>2 Columns</div></a></li>
-									<li><a href="projects-3.html"><div>3 Columns</div></a></li>
-									<li><a href="projects.html"><div>4 Columns</div></a></li>
-									<li><a href="projects-5.html"><div>5 Columns</div></a></li>
-								</ul>
-							</li>
-							<li><a href="investors.html"><div>Investors</div></a></li>
-							<li class="current"><a href="blog.html"><div>News</div></a></li>
-							<li><a href="careers.html"><div>Careers</div></a></li>
-							<li><a href="contact.html"><div>Contact</div></a></li>
-						</ul>
-
-						<!-- Top Search
-						============================================= -->
-						<div id="top-search">
-							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
-							<form action="search.html" method="get">
-								<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
-							</form>
-						</div><!-- #top-search end -->
-
-					</div>
-
-				</nav><!-- #primary-menu end -->
-
-			</div>
-
-		</header><!-- #header end -->
+		<header layout:replace="view/layouts/fragments/header" id="header" class="sticky-style-2"></header>
 		
 		<section layout:fragment="slider" id="slider"></section>
 
-		<!-- Page Title
-		============================================= -->
 		<section layout:fragment="page-title" id="page-title"></section>
-		<!-- #page-title end -->
 
-		<!-- Content
-		============================================= -->
 		<section layout:fragment="content" id="content"></section>
-		<!-- #content end -->
-
-		<!-- Footer
-		============================================= -->
+		
 		<footer id="footer" class="dark">
 
 			<div class="container">

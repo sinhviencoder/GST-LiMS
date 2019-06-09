@@ -22,7 +22,7 @@
         }
       } else {
         //for other url
-        if (element.attr('href').indexOf(current) !== -1) {
+        /*if (element.attr('href').indexOf(current) !== -1) {
           element.parents('.nav-item').last().addClass('active');
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
@@ -31,7 +31,7 @@
           if (element.parents('.submenu-item').length) {
             element.addClass('active');
           }
-        }
+        }*/
       }
     }
 

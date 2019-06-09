@@ -12,6 +12,9 @@
               <div class="row">
                 <div class="col-12">
 					<form id="form-category" action="#" th:action="@{/admin/category/add}" th:object="${category}" method="post" class="forms-sample">
+					  <div class="col-sm-9 offset-sm-3 alert" th:if="${isSuccess}" th:classappend="alert-success">
+					  	<strong>Success update category!</strong> <span th:utext="${category.name}"></span>
+					  </div>
 					  <div class="form-group row" th:classappend="${#fields.hasErrors('name')} ? has-danger : ''">
 					    <label class="col-sm-3 col-form-label" th:for="name">Category Name*</label>
 					    <div class="col-sm-9">
@@ -37,11 +40,11 @@
 	                    <label th:for="category-parent" class="col-sm-3 col-form-label">Category Parent</label>
 	                    <div class="col-sm-9">
 		                    <select class="form-control form-control-lg" id="category-parent"  th:field="*{categoryParent}">
+		                      <option value="" >--Choose Category Parent--</option>
 		                      <option th:each="category : ${categorys}" th:value="${category.categoryId}" th:utext="${category.name}">None</option>
 		                    </select>
 	                    </div>
 	                  </div>
-					  <button id="category-submit" type="submit" class="btn btn-primary mr-2" >Save</button>
 					  <button id="category-submit-ajax" type="button" class="btn btn-primary mr-2" >Save Ajax</button>
 					</form>
                 </div>

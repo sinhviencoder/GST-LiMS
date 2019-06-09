@@ -12,7 +12,7 @@ public interface CategoryService {
 
 	Iterable<Category> getCategoryAll();
 
-	List<Category> getCategoryTree();
+	List<Category> getCategoryRoot();
 
 	List<Category> search(String q);
 

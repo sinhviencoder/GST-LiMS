@@ -22,8 +22,9 @@ public class Book {
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
 	private Category category;
-	private int count;
 	private String image;
+	private int quatity;// số lượng ban đầu
+	private int count;// số lượng thực tại = quatity - order book
 	private String description;
 	private int status;
 
@@ -59,14 +60,6 @@ public class Book {
 		this.category = category;
 	}
 
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
 	public String getImage() {
 		return image;
 	}
@@ -91,4 +84,19 @@ public class Book {
 		this.status = status;
 	}
 
+	public int getQuatity() {
+		return quatity;
+	}
+
+	public void setQuatity(int quatity) {
+		this.quatity = quatity;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 }

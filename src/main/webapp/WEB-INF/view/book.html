@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{views/layouts/layout}">
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{view/layouts/layout}">
 <head>
 	<title>Trang Chủ</title>
 </head>
@@ -29,11 +30,11 @@
 
 						<div class="product clearfix" th:each="book: ${bookPage.getContent()}">
 							<div class="product-image">
-								<a href="#" ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
-								<a href="#"><img src="/demos/construction/images/projects/1.jpg" alt="Checked Short Dress"></a>
+								<a href="#" ><img src="/images/projects/1.jpg" alt="Checked Short Dress"></a>
+								<a href="#"><img src="/images/projects/1.jpg" alt="Checked Short Dress"></a>
 								<div class="product-overlay">
-									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SÃ¡ch</span></a>
-									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
+									<a href="#" id="add-to-cart" th:data="${book.bookId}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
+									<a href="#" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
@@ -61,6 +62,7 @@
 
 			</div>
 
+		<div class="modal" id="modal-book-cart"></div>
 		</section>
 
 </body>

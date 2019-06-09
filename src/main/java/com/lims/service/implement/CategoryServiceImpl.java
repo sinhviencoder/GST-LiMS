@@ -81,7 +81,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public List<Category> getCategoryTree() {
+	public List<Category> getCategoryRoot() {
 		return categoryRepository.findByCategoryParentIsNull();
 	}
 

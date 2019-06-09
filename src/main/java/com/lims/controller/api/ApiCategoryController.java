@@ -19,7 +19,7 @@ import com.lims.entity.Category;
 import com.lims.service.CategoryService;
 import com.util.ErrorUtils;
 
-@RestController
+@RestController // service restFull Api
 @RequestMapping("/api/category")
 //@PreAuthorize("hasRole('ROLE_ADMIN')")
 @Secured({ AuthoritiesConstants.ADMIN, AuthoritiesConstants.EMPLOYEE })
