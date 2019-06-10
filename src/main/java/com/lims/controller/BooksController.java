@@ -1,6 +1,7 @@
 package com.lims.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,9 +51,17 @@ public class BooksController {
 		return bookService.getTopBook();
 	}
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+//	@ResponseBody
 	public String getDetailBook(Model model, @PathVariable("id") int id
 			) {
-		System.out.println("gau gau");
-		return"views/book-detail :: #content";
+		
+		Optional<Book> bookByID =bookService.getBookById(id);
+	//	
+		System.out.println("gau gau" +id);
+//		System.out.println("t goi m"+bookByID.get().toString());
+		
+		model.addAttribute("bookByID", bookByID.get());
+	
+		return"views/book-detail";
 	}
 }

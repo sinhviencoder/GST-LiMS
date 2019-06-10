@@ -91,4 +91,10 @@ public class Book {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", name=" + name + ", author=" + author + ", category=" + category
+				+ ", count=" + count + ", image=" + image + ", description=" + description + ", status=" + status + "]";
+	}
+
 }
