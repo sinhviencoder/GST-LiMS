@@ -41,7 +41,38 @@
 
 		</section>
 		<section layout:fragment="content" id="content">
-			<h3>Đây là content và chưa có gì cho này hiện danh sách Tóp đọc nhiều nhất</h3>
+		<h2> Sách được mượn nhiều nhất</h2>
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Shop
+					============================================= -->
+					<div  class="shop grid-container clearfix" data-layout="fitRows">
+
+						<div class="product clearfix"   th:each="book: ${bookTop}">
+							<div class="product-image">
+								<a   ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
+								
+								<div class="product-overlay">
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn sách</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc sách</span></a>
+								</div>
+							</div>
+							<div class="product-desc">
+								<div class="product-title">
+									<h3><a href="#" th:text="${book.name}">Title Book</a></h3>
+								</div>
+								<span th:if="${book.author!=null}" th:text="${book.author.name}">Autho Name</span>
+								<div class="product-rating">Publishing</div>
+								<p>Số lần đặt</p><a th:text="${book.count}"></a>
+							</div>
+						</div>
+
+					</div>
+					</div>
+					</div>
+					
 		</section>
 </body>
 </html>

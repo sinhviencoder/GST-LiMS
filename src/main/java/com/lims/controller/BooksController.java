@@ -45,11 +45,9 @@ public class BooksController {
 		model.addAttribute("bookPage", bookPage);
 		return "views/book-page :: #content";
 	}
-	@RequestMapping(value="/top", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Book> getTop() {
-		return bookService.getTopBook();
-	}
+	
+	//	return bookService.getTopBook();
+	
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
 //	@ResponseBody
 	public String getDetailBook(Model model, @PathVariable("id") int id
@@ -57,6 +55,7 @@ public class BooksController {
 		
 		Optional<Book> bookByID =bookService.getBookById(id);
 	//	
+		
 		System.out.println("gau gau" +id);
 //		System.out.println("t goi m"+bookByID.get().toString());
 		
