@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lims.entity.Book;
 import com.lims.entity.OrderDetail;
@@ -36,13 +35,6 @@ public class BookController {
 	@Autowired
 	BookRepository bookRepository;
 
-	@RequestMapping(value = "/book1", method = RequestMethod.GET)
-	@ResponseBody
-	public String _demo() {
-		System.out.println("okok");
-		return "view/book";
-	}
-
 	@RequestMapping(value = { "/book" }, method = RequestMethod.GET)
 
 	public String pageBook(Model model, Book book,
@@ -50,9 +42,9 @@ public class BookController {
 
 		page = page - 1;
 		model.addAttribute("books", bookService.getBookdAll());
-//		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
-//		model.addAttribute("bookPage", bookPage);
-//		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
+		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
+		model.addAttribute("bookPage", bookPage);
+		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
 		return "view/book";
 	}
 
@@ -115,7 +107,9 @@ public class BookController {
 
 		// update book count
 		bookOrder.setCount(bookOrder.getCount() - 1);
-//		bookService.save(bookOrder);
+		
+		
+		//bookService.save(bookOrder);
 
 		OrderDetail orderBook = new OrderDetail();
 		orderBook.setBook(bookOrder);
@@ -123,6 +117,7 @@ public class BookController {
 		System.out.println(bookOrder.getCount() + "ok");
 
 		orderDetailRepository.save(orderBook);
+		
 		return "view/book-order-cart-confirm";
 	}
 }

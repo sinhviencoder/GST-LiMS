@@ -15,7 +15,7 @@ public class OrderDetail {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long orderDetailId;
 	@OneToOne
-	@JoinColumn(name = "bookId")
+	@JoinColumn(name = "bookId", insertable = false,  updatable = false)
 	private Book book;
 	private Date startDate;
 	private Date endDate;
