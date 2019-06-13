@@ -66,6 +66,30 @@
 								    </div>
 								  </div>
 								  
+								  <div sec:authorize="isAuthenticated()" th:if="${false}" class="modal" id="modal-book-cart">
+								    <div class="modal-dialog">
+								      <div class="modal-content">
+								      
+								        <!-- Modal Header -->
+								        <div class="modal-header">
+								          <h4 class="modal-title">Mượn Sách bạn mượn trước đó rồi</h4>
+								          <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        </div>
+								        
+								        <!-- Modal body -->
+								        <div class="modal-body">
+								          <h3>Bạn đã mượn trước đó rồi vui lòng xem profile</h3>
+								        </div>
+								        
+								        <!-- Modal footer -->
+								        <div class="modal-footer">
+								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								        </div>
+								        
+								      </div>
+								    </div>
+								  </div>
+								  
 								  <div sec:authorize="!isAuthenticated()" class="modal" id="modal-book-cart">
 								    <div class="modal-dialog">
 								      <div class="modal-content">

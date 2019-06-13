@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lims.entity.Book;
+import com.lims.repository.BookRepository;
 import com.lims.repository.UserRepository;
 import com.lims.service.CategoryService;
 
@@ -18,7 +21,11 @@ public class MainController {
 	CategoryService categoryService;
 
 	@Autowired
+	BookRepository bookRepository;
+
+	@Autowired
 	UserRepository userRepository;
+
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {

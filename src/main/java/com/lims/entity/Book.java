@@ -1,6 +1,7 @@
 package com.lims.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class Book {
 	private long bookId;
 	@NotEmpty(message = "Không được để trống name")
 	private String name;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "authorId")
 	private Author author;
 	@ManyToOne
