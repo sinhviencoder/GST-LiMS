@@ -1,10 +1,61 @@
-								  <div sec:authorize="isAuthenticated()" th:if="${bookOrder != null}" class="modal" id="modal-book-cart">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+								  
+								  <div sec:authorize="!isAuthenticated()" th:fragment="login" class="modal" id="modal-book-cart">
 								    <div class="modal-dialog">
 								      <div class="modal-content">
 								      
 								        <!-- Modal Header -->
 								        <div class="modal-header">
-								          <h4 class="modal-title">Mượn Sách</h4>
+								          <h4 class="modal-title" th:utext="${message}">Chua Dang Nhap</h4>
+								          <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        </div>
+								        
+								        <!-- Modal body -->
+								        <div class="modal-body">
+								          <a href="/login" th:utext="${message}">Vui long dang nhap</a>
+								        </div>
+								        
+								        <!-- Modal footer -->
+								        <div class="modal-footer">
+								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								        </div>
+								        
+								      </div>
+								    </div>
+								  </div>
+								 
+								  <div sec:authorize="isAuthenticated()" th:fragment="orderNotReturn" class="modal" id="modal-book-cart">
+								    <div class="modal-dialog">
+								      <div class="modal-content">
+								      
+								        <!-- Modal Header -->
+								        <div class="modal-header">
+								          <h4 class="modal-title" th:utext="${message}">Muon sach nhung chua tra</h4>
+								          <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        </div>
+								        
+								        <!-- Modal body -->
+								        <div class="modal-body">
+								          <h3>Bạn đã mượn trước đó rồi vui lòng xem profile</h3>
+								        </div>
+								        
+								        <!-- Modal footer -->
+								        <div class="modal-footer">
+								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								        </div>
+								        
+								      </div>
+								    </div>
+								  </div>
+								  
+								  <div sec:authorize="isAuthenticated()" th:fragment="order" class="modal" id="modal-book-cart">
+								    <div class="modal-dialog">
+								      <div class="modal-content">
+								      
+								        <!-- Modal Header -->
+								        <div class="modal-header">
+								          <h4 class="modal-title" th:utext="${message}">Tien Hanh Muon Sach</h4>
 								          <button type="button" class="close" data-dismiss="modal">&times;</button>
 								        </div>
 								        
@@ -41,19 +92,18 @@
 								    </div>
 								  </div>
 								  
-								  <div sec:authorize="isAuthenticated()" th:if="${bookOrder == null}" class="modal" id="modal-book-cart">
+								  <div sec:authorize="isAuthenticated()" th:fragment="reserve" class="modal" id="modal-book-cart">
 								    <div class="modal-dialog">
 								      <div class="modal-content">
 								      
 								        <!-- Modal Header -->
 								        <div class="modal-header">
-								          <h4 class="modal-title">Mượn Sách Nhưng Người ta Mượn Hết Rồi</h4>
+								          <h4 class="modal-title" th:utext="${message}">Thu vien da het sach</h4>
 								          <button type="button" class="close" data-dismiss="modal">&times;</button>
 								        </div>
 								        
 								        <!-- Modal body -->
 								        <div class="modal-body">
-								          <h3>Hiện Tại không có đủ sách để mượn bạn có thể mượn đọc trực tiếp tại thự viên</h3>
 								          <h3>Bạn có thể đặt giử sách vào thơi gian sau</h3>
 								        </div>
 								        
@@ -66,50 +116,3 @@
 								    </div>
 								  </div>
 								  
-								  <div sec:authorize="isAuthenticated()" th:if="${false}" class="modal" id="modal-book-cart">
-								    <div class="modal-dialog">
-								      <div class="modal-content">
-								      
-								        <!-- Modal Header -->
-								        <div class="modal-header">
-								          <h4 class="modal-title">Mượn Sách bạn mượn trước đó rồi</h4>
-								          <button type="button" class="close" data-dismiss="modal">&times;</button>
-								        </div>
-								        
-								        <!-- Modal body -->
-								        <div class="modal-body">
-								          <h3>Bạn đã mượn trước đó rồi vui lòng xem profile</h3>
-								        </div>
-								        
-								        <!-- Modal footer -->
-								        <div class="modal-footer">
-								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								        </div>
-								        
-								      </div>
-								    </div>
-								  </div>
-								  
-								  <div sec:authorize="!isAuthenticated()" class="modal" id="modal-book-cart">
-								    <div class="modal-dialog">
-								      <div class="modal-content">
-								      
-								        <!-- Modal Header -->
-								        <div class="modal-header">
-								          <h4 class="modal-title">Chư Đăng Nhập</h4>
-								          <button type="button" class="close" data-dismiss="modal">&times;</button>
-								        </div>
-								        
-								        <!-- Modal body -->
-								        <div class="modal-body">
-								          <a href="/login">Vui lòng đăng nhập trước khí mượn</a>
-								        </div>
-								        
-								        <!-- Modal footer -->
-								        <div class="modal-footer">
-								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								        </div>
-								        
-								      </div>
-								    </div>
-								  </div>

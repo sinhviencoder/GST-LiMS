@@ -24,8 +24,8 @@ public class Book {
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	private String image;
-	private int quatity;// số lượng ban đầu
-	private int count;// số lượng thực tại = quatity - order book
+	private int quantity;// số lượng ban đầu
+	private int quantityActual;// số lượng thực tại = quatity - order book
 	private String description;
 	private int status;
 
@@ -69,6 +69,22 @@ public class Book {
 		this.image = image;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getQuantityActual() {
+		return quantityActual;
+	}
+
+	public void setQuantityActual(int quantityActual) {
+		this.quantityActual = quantityActual;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -83,21 +99,5 @@ public class Book {
 
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	public int getQuatity() {
-		return quatity;
-	}
-
-	public void setQuatity(int quatity) {
-		this.quatity = quatity;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
 	}
 }

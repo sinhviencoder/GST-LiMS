@@ -1,27 +1,21 @@
-    $('#book-datatable').DataTable({
-    	ajax: '/admin/book/datatable',
+    $('#order-datatable').DataTable({
+    	ajax: '/admin/order/datatable',
         serverSide: true,
         columns: [
             {
-                data: 'bookId', title: '#'
+                data: 'orderId', title: '#'
             },
             {
-                data: 'name', title: 'Name'
+            	data: 'book.name', title: 'Book Name'
             },
             {
-                data: 'quantity', title: 'Quantity'
+            	data: 'user.lastName', title: 'User'
             },
             {
-            	data: 'quantityActual', title: 'Quantity Actual'
+                data: 'startDate', title: 'Start Date'
             },
             {
-            	data: 'description', title : 'Description'
-            },
-            {
-            	data: 'category.name', title: 'Category'
-            },
-            {
-            	data: 'author.name', title: 'Author'
+                data: 'endDate', title: 'End Date'
             },
             {
                 data: 'status', title: 'Status'

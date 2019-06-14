@@ -15,7 +15,7 @@ import com.lims.service.BookService;
 @Controller
 @RequestMapping(value = "/category")
 public class CategoryController {
-	
+
 	@Autowired
 	BookService bookService;
 
@@ -25,7 +25,7 @@ public class CategoryController {
 
 		page = page - 1;
 		model.addAttribute("books", bookService.getBookdAll());
-		Page<Book> bookPage = bookService.getBookAll(new PageRequest(page, 8));
+		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
 		model.addAttribute("bookPage", bookPage);
 		return "view/book";
 	}
@@ -36,9 +36,9 @@ public class CategoryController {
 
 		page = page - 1;
 		model.addAttribute("books", bookService.getBookdAll());
-		Page<Book> bookPage = bookService.getBookAll(new PageRequest(page, 8));
+		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
 		model.addAttribute("bookPage", bookPage);
 		return "view/book-pagination :: #content";
 	}
-	
+
 }

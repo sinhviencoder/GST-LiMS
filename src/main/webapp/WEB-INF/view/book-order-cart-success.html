@@ -1,4 +1,7 @@
-								  <div sec:authorize="isAuthenticated()" th:if="${bookOrder != null}" class="modal" id="modal-book-cart">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	
+								  <div sec:authorize="isAuthenticated()" class="modal" id="modal-book-cart">
 								    <div class="modal-dialog">
 								      <div class="modal-content">
 								      
@@ -17,15 +20,15 @@
 									        <table border="1px">
 									        	<tr>
 									        		<td>#</td>
-									        		<td th:utext="${bookOrder.bookId}"></td>
+									        		<td th:utext="${order.book.bookId}"></td>
 									        	</tr>
 									        	<tr>
 									        		<td>Tên Sách</td>
-									        		<td th:utext="${bookOrder.name}"></td>
+									        		<td th:utext="${order.book.name}"></td>
 									        	</tr>
 									        	<tr>
 									        		<td>Tác giải</td>
-									        		<td th:utext="${ bookOrder.author != null ? bookOrder.author.authorId : 'không có'}">none</td>
+									        		<td th:utext="${ order.book.author != null ? order.book.author.authorId : 'không có'}">none</td>
 									        	</tr>
 									        	<tr>
 									        		<td>Ngày Cuối Cùng Nhận Sách</td>

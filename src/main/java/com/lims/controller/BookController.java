@@ -4,8 +4,6 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,23 +14,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lims.entity.Book;
-import com.lims.entity.OrderDetail;
+import com.lims.entity.Order;
 import com.lims.repository.BookRepository;
-import com.lims.repository.OrderDetailRepository;
 import com.lims.service.BookService;
 import com.lims.service.CategoryService;
+import com.lims.service.OrderService;
+import com.lims.service.UserService;
 
 @Controller
 public class BookController {
 
 	@Autowired
-	EntityManager em;
-
-	@Autowired
 	BookService bookService;
 
 	@Autowired
-	OrderDetailRepository orderDetailRepository;
+	OrderService orderService;
+
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	CategoryService categoryService;
@@ -41,7 +40,6 @@ public class BookController {
 	BookRepository bookRepository;
 
 	@RequestMapping(value = { "/book" }, method = RequestMethod.GET)
-
 	public String pageBook(Model model, Book book,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
@@ -67,70 +65,90 @@ public class BookController {
 	public String checkOrder(@RequestParam(value = "bookId", required = true) Long bookId, final Principal principal,
 			Model model) {
 
-		// check quantity book store >1 And check cout user order book (countOrder <
-		// (quantityBook -1))
-		// check user muon truoc do hay chua
+		// check login
+		if (null == principal) {
+			model.addAttribute("message", "Vui lòng đăng nhập trước khi mượn sách");
+			return "view/book-order-cart :: login";
+		}
 
-		Book bookOrder = bookRepository.findByBookIdAndCountGreaterThanAndQuatityGreaterThan(bookId, 1, 1);
-		System.out.println(bookOrder != null ? bookOrder.getName() : "");
-		model.addAttribute("bookOrder", bookOrder);
+		// Check co dang order book nay khong (muon doc ma chua tra)
+		Order orderTmp = orderService.getOrderByUsernameAndBookId(principal.getName(), bookId);
+		if (orderTmp != null && orderTmp.getStatus() != 4) {
+			model.addAttribute("message", "Bạn đã đặt mượn sách từ trước, mỗi người chỉ đặt tối đa một quyển");
+			return "view/book-order-cart :: orderNotReturn";
+		}
 
-		Date endDateOrder = new Date();
-		Calendar c = Calendar.getInstance();
-		c.setTime(endDateOrder);
-		c.add(Calendar.DATE, 2);
-		endDateOrder = c.getTime();
+		// check count book (count > 1)
+		// neu book het cho phep dat truoc
+		Book bookOrder = bookRepository.findByBookIdAndQuantityActualGreaterThan(bookId, 1);
+		if (bookOrder == null) {
 
-		model.addAttribute("endDateOrder", endDateOrder);
-		if (null == principal)
-			return "view/book-order-cart";
-		return "view/book-order-cart";
+			model.addAttribute("message", "Hiện tại sách được mượn hết bạn có thể đặt giửa chổ trước");
+			return "view/book-order-cart :: reserve";
+			
+		} else {
+
+			model.addAttribute("message", "Tiếng hành đặt sách");
+			model.addAttribute("bookOrder", bookOrder);
+		}
+
+		return "view/book-order-cart :: order";
 	}
 
 	@RequestMapping(value = "/book/order/confirm", method = RequestMethod.GET)
 	public String confirmOrder(@RequestParam(value = "bookId", required = true) Long bookId, final Principal principal,
 			Model model) {
 
-		// check quantity book store >1
-		// And check cout user order book (countOrder < (quantityBook -1))
-
-		Book bookOrder = bookRepository.findByBookIdAndCountGreaterThanAndQuatityGreaterThan(bookId, 1, 1);
-		System.out.println(bookOrder != null ? bookOrder.getName() : "");
-		model.addAttribute("bookOrder", bookOrder);
-		if (bookOrder == null)
+		// check login
+		if (null == principal) {
+			model.addAttribute("message", "Vui lòng đăng nhập trước khi mượn sách");
 			return "view/book-order-cart";
+		}
 
-		Date endDateOrder = new Date();
-		Calendar c = Calendar.getInstance();
-		c.setTime(endDateOrder);
-		c.add(Calendar.DATE, 2);
-		endDateOrder = c.getTime();
-
-		
-		model.addAttribute("endDateOrder", endDateOrder);
-		if (null == principal)
+		// Check co dang order book nay khong (muon doc ma chua tra)
+		Order orderTmp = orderService.getOrderByUsernameAndBookId(principal.getName(), bookId);
+		if (orderTmp != null && orderTmp.getStatus() != 4) {
+			model.addAttribute("message", "Bạn đã đặt mượn sách từ trước, mỗi người chỉ đặt tối đa một quyển");
 			return "view/book-order-cart";
+		}
 
-		// update book count
-		bookOrder.setCount(bookOrder.getCount() - 1);
-		bookOrder.setName("dkm");
+		// check count book (count > 1)
+		// neu book het cho phep dat truoc
+		Book bookOrder = bookRepository.findByBookIdAndQuantityActualGreaterThan(bookId, 1);
+		if (bookOrder == null) {
+			model.addAttribute("message", "Hiện tại sách được mượn hết bạn có thể đặt giửa chổ trước");
 
-		System.out.println(bookOrder.getCount() + "ok1");
-		
-		//System.out.println("After EntityManager.persist() : " + em.contains(bookOrder));
-		//em.detach(bookOrder);
-//		 bookService.save(bookOrder);
+			return "view/book-order-cart :: reserve";
+		} else {
+			model.addAttribute("message", "Tiếng hành đặt sách");
 
-		OrderDetail orderBook = new OrderDetail();
-		orderBook.setBook(bookOrder);
-		orderBook.setEndDate(endDateOrder);
-		
-		Book bookOrder1 = bookRepository.findById(1l).get();
-		System.out.println(bookOrder1.getCount() + "ok2");
-		System.out.println(bookOrder1.getName() + "ok2");
+			Order order = new Order();
+			order.setUser(userService.getUserByUsername(principal.getName()));
 
-		//orderDetailRepository.save(orderBook);
+			Date endDateOrder = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(endDateOrder);
+			c.add(Calendar.DATE, 15);
+			endDateOrder = c.getTime();
+			order.setStartDate(new Date());
+			order.setEndDate(endDateOrder);
 
-		return "view/book-order-cart-confirm";
+			// 0 la order truoc nhung chua co sach muon
+			// 1 la order chua nhan
+			// 2 la da nhan thanh cong
+			// 3 la qua han
+			// 4 la da return
+			order.setStatus(1);
+			// update book count
+			bookOrder.setQuantityActual(bookOrder.getQuantityActual() - 1);
+			order.setBook(bookOrder);
+
+			bookService.save(bookOrder);
+			orderService.save(order);
+
+			System.out.println(order.getBook().getBookId());
+			model.addAttribute("order", order);
+			return "view/book-order-cart-success";
+		}
 	}
 }

@@ -43,10 +43,17 @@
     </div>
   </div>
   <div class="form-group row">
-    <label th:for="count" class="col-sm-3 col-form-label">Count</label>
+    <label th:for="quantity" class="col-sm-3 col-form-label">Quantity</label>
     <div class="col-sm-9">
-      <input type="text" th:field="*{count}" class="form-control" placeholder="count">
-      <label th:if="${#fields.hasErrors('count')}" th:errors="*{count}" class="error mt-2 text-danger">count Name Error.</label>
+      <input type="text" th:field="*{quantity}" class="form-control" placeholder="quantity">
+      <label th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error mt-2 text-danger">Quantity Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label th:for="quantityActual" class="col-sm-3 col-form-label">Quantity Actual</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{quantityActual}" class="form-control" placeholder="quantity">
+      <label th:if="${#fields.hasErrors('quantityActual')}" th:errors="*{quantityActual}" class="error mt-2 text-danger">Quantity Actual Name Error.</label>
     </div>
   </div>
   <div class="form-group row">
