@@ -18,6 +18,7 @@ public interface BookService {
 	
 	DataTablesOutput<Book> getBookAll(DataTablesInput input);
 
+	
 	List<Book> search(String q);
 
 	Optional<Book> getBookById(long id);
@@ -29,4 +30,8 @@ public interface BookService {
 	Book update(Book book);
 
 	Book getBookCheckOrder(long bookId);
+
+	List<Book> getTopBook();
+
+	
 }

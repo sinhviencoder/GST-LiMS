@@ -10,34 +10,28 @@
 
 			<div class="swiper-container swiper-parent">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="background-image: url('demos/construction/images/slider/2.jpg'); background-position: center top;">
+					<div class="swiper-slide" style="background-image: url('demos/construction/images/slider/3.jpg'); background-position: center top;">
 						<div class="container clearfix">
 							<div class="slider-caption">
-								<h2>Welcome to Canvas</h2>
-								<p class="d-none d-sm-block">Create just what you need for your Perfect Website. Choose from a wide range of Elements &amp; simply put them on your own Canvas.</p>
+								<h2>Welcome to LiMS- Group01</h2>
+								<p class="d-none d-sm-block">Thư viện online trường đại học Nông Lâm TP-HCM</p>
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide">
+					<div class="swiper-slide" style="background-image: url('demos/construction/images/slider/2.jpg'); background-position: center top;">
 						<div class="container clearfix">
 							<div class="slider-caption slider-caption-right">
-								<h2>Beautifully Flexible</h2>
-								<p class="d-none d-sm-block">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Powerful Layout with Responsive functionality that can be adapted to any screen size.</p>
+								<h2>FIT-NLU</h2>
+								<p class="d-none d-sm-block">Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn - Barack Obama</p>
 							</div>
 						</div>
-						<div class="video-wrap">
-							<video id="slide-video" poster="demos/construction/images/videos/1.jpg" preload="auto" loop autoplay muted>
-								<source src='demos/construction/images/videos/1.webm' type='video/webm' />
-								<source src='demos/construction/images/videos/1.mp4' type='video/mp4' />
-							</video>
-							<div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>
-						</div>
+						
 					</div>
-					<div class="swiper-slide" style="background-image: url('demos/construction/images/slider/1.jpg'); background-position: center bottom;">
+					<div class="swiper-slide" style="background-image: url('demos/construction/images/slider/1.png'); background-position: center bottom;">
 						<div class="container clearfix">
 							<div  class="slider-caption">
-								<h2>Premium Constructions</h2>
-								<p class="d-none d-sm-block">You'll be surprised to see the Final Results of your Creation &amp; would crave for more.</p>
+								<h2>GST-FSOFT-GROUP01</h2>
+								<p class="d-none d-sm-block">Thư viện online trường đại học Nông Lâm TP-HCM</p>
 							</div>
 						</div>
 					</div>
@@ -48,7 +42,37 @@
 
 		</section>
 		<section layout:fragment="content" id="content">
-			<h3>Đây là content và chưa có gì cho này hiện danh sách Tóp đọc nhiều nhất</h3>
+			<h2> Sách được mượn nhiều nhất</h2>
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Shop
+					============================================= -->
+					<div  class="shop grid-container clearfix" data-layout="fitRows">
+
+						<div class="product clearfix"   th:each="book: ${bookTop}">
+							<div class="product-image">
+								<a   ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
+								
+								<div class="product-overlay">
+									<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn sách</span></a>
+									<a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc sách</span></a>
+								</div>
+							</div>
+							<div class="product-desc">
+								<div class="product-title">
+									<h3><a href="#" th:text="${book.name}">Title Book</a></h3>
+								</div>
+								<span th:if="${book.author!=null}" th:text="${book.author.name}">Autho Name</span>
+								<div class="product-rating">Publishing</div>
+								<p>Số lần đặt</p><a th:text="${book.count}"></a>
+							</div>
+						</div>
+
+					</div>
+					</div>
+					</div>
 		</section>
 </body>
 </html>
