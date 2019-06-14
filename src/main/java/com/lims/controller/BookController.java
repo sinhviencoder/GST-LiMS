@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,9 @@ import com.lims.service.CategoryService;
 
 @Controller
 public class BookController {
+
+	@Autowired
+	EntityManager em;
 
 	@Autowired
 	BookService bookService;
@@ -101,23 +106,31 @@ public class BookController {
 		c.add(Calendar.DATE, 2);
 		endDateOrder = c.getTime();
 
+		
 		model.addAttribute("endDateOrder", endDateOrder);
 		if (null == principal)
 			return "view/book-order-cart";
 
 		// update book count
 		bookOrder.setCount(bookOrder.getCount() - 1);
+		bookOrder.setName("dkm");
+
+		System.out.println(bookOrder.getCount() + "ok1");
 		
-		
-		//bookService.save(bookOrder);
+		//System.out.println("After EntityManager.persist() : " + em.contains(bookOrder));
+		//em.detach(bookOrder);
+//		 bookService.save(bookOrder);
 
 		OrderDetail orderBook = new OrderDetail();
 		orderBook.setBook(bookOrder);
 		orderBook.setEndDate(endDateOrder);
-		System.out.println(bookOrder.getCount() + "ok");
-
-		orderDetailRepository.save(orderBook);
 		
+		Book bookOrder1 = bookRepository.findById(1l).get();
+		System.out.println(bookOrder1.getCount() + "ok2");
+		System.out.println(bookOrder1.getName() + "ok2");
+
+		//orderDetailRepository.save(orderBook);
+
 		return "view/book-order-cart-confirm";
 	}
 }

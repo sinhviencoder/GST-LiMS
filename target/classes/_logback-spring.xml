@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<configuration>
+
+	<timestamp key="byDay" datePattern="yyyyMMdd'T'HHmmss"/>
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>logs/logfile-${byDay}.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%date %-4relative [%thread] %-5level %logger{35} - %msg %n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CACHE-FILE" class="ch.qos.logback.core.FileAppender">
+		<file>logs/logcache-${byDay}.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%date %-4relative [%thread] %-5level %logger{35} - %msg %n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%date %-4relative [%thread] %-5level %logger{35} - %msg %n
+			</Pattern>
+		</layout>
+	</appender>
+
+
+	<logger name="logcache" level="DEBUG" additivity="false">
+		<appender-ref ref="CACHE-FILE" />
+		<appender-ref ref="Console" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="Console" />
+	</root>
+</configuration>
