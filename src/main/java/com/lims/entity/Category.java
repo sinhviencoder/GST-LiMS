@@ -15,6 +15,7 @@ import javax.persistence.OrderBy;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.SerializedName;
 import com.util.URLRewriteUtils;
@@ -35,6 +36,7 @@ public class Category {
 	@OrderBy("sortorder ASC")
 	private List<Category> categoryChildrens = new ArrayList<Category>();
 
+	@JsonIgnore
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // nếu Lazy thống bào mới tạo json được
 	@ManyToOne(fetch = FetchType.LAZY) // optional = false runtime, nullable=false không cho column null csdl
 	@JoinColumn(name = "parent_id")
