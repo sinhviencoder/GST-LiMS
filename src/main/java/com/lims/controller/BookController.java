@@ -126,10 +126,10 @@ public class BookController {
 	//	
 		
 		System.out.println("gau gau" +id);
-//		System.out.println("t goi m"+bookByID.get().toString());
+		System.out.println("t goi m"+ bookByID.get().getName());
 		
 		model.addAttribute("bookByID", bookByID.get());
 	
-		return"views/book-detail";
+		return "view/book-detail";
 	}
 }

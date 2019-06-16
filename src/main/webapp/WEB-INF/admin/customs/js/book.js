@@ -32,7 +32,7 @@
 				"sDefaultContent": '"none"',
 				"aTargets": [ "_all" ]
 			 },
-        	 {"sClass":  "text-center", "aTargets" : ["_all"]},
+        	 {"sClass":  "text-left", "aTargets" : ["_all"]},
         	 { "sTitle" : "Action",
         		 "orderable": false,
         		 "bSearchable": false,

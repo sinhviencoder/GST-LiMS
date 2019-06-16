@@ -40,6 +40,9 @@
           ],
     });
 
+	$('button#delete_post').on('click', function(e){
+		deleteCategory(id);
+	});
 	
 	$('#category-get-form').on('click', function(e) {
 		$("form#form-category").load("/admin/category/add-ajax", function(data) {
