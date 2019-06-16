@@ -1,5 +1,7 @@
 package com.lims.service.implement;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
@@ -21,13 +23,21 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order getOrderByUsernameAndBookId(String username, Long bookId) {
-		return orderRepository.findByUserUsernameAndBookBookId(username, bookId);
-	}
-
-	@Override
 	public DataTablesOutput<Order> getOrderAll(DataTablesInput input) {
 		return orderRepository.findAll(input);
 	}
+
+	@Override
+	public Optional<Order> getOrderByOrderId(long orderId) {
+		return orderRepository.findById(orderId);
+	}
+
+	@Override
+	public Order getOrderByUsernameAndBookIdAndStatusAndStatus(String username, Long bookId, int statusReturn,
+			int statusReject) {
+		return orderRepository.findByUserUsernameAndBookBookIdAndStatusNotAndStatusNot(username, bookId, statusReturn, statusReject);
+	}
+
+
 
 }

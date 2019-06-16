@@ -25,7 +25,6 @@ public class BookServiceImpl implements BookService {
 		return bookRepository.findAll();
 	}
 
-
 	@Override
 	public List<Book> search(String q) {
 		return null;
@@ -61,11 +60,24 @@ public class BookServiceImpl implements BookService {
 		return bookRepository.findAll(pageable);
 	}
 
-
 	@Override
 	public Book getBookCheckOrder(long bookId) {
 		return null;
 	}
 
+	@Override
+	public Page<Book> findByAuthorNameLike(String authorName, Pageable pageable) {
+		return bookRepository.findByAuthorNameLike(authorName, pageable);
+	}
+
+	@Override
+	public Page<Book> findByNameLike(String bookName, Pageable pageable) {
+		return bookRepository.findByNameLike(bookName, pageable);
+	}
+
+	@Override
+	public Page<Book> findByCategoryNameLike(String categoryName, Pageable pageable) {
+		return bookRepository.findByCategoryNameLike(categoryName, pageable);
+	}
 
 }

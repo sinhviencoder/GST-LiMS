@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+					<form layout:fragment="book-search" class="form-inline" action="/book/search" method="get">
+						<div class="form-group mb-2">
+							<label for="search-type" class="sr-only">Tác Giả</label>
+							<select name="search-type" class="form-control" id="search-type">
+								<option value="fulltext">Từ khóa tìm kiếm bất kỳ</option>
+								<option value="author">Tác Giả</option>
+								<option value="bookName">Nhan Đề</option>
+								<option value="category">Chủ Đề</option>
+							</select>
+						</div>
+						<div class="form-group mx-sm-3 mb-2">
+							<input type="text" id="search-book" name="search-text" class="form-control"  placeholder="Nhận từ khóa tìm kiếm">
+						</div>
+						<button type="submit" class="btn btn-primary mb-2">Tìm Kiếm</button>
+					</form>
+</body>
+</html>

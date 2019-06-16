@@ -15,7 +15,7 @@ public interface BookService {
 	Iterable<Book> getBookdAll();
 
 	Page<Book> getBookAll(Pageable pageable);
-	
+
 	DataTablesOutput<Book> getBookAll(DataTablesInput input);
 
 	List<Book> search(String q);
@@ -29,4 +29,10 @@ public interface BookService {
 	Book update(Book book);
 
 	Book getBookCheckOrder(long bookId);
+
+	Page<Book> findByAuthorNameLike(String authorName, Pageable pageable);
+
+	Page<Book> findByNameLike(String bookName, Pageable pageable);
+
+	Page<Book> findByCategoryNameLike(String categoryName, Pageable pageable);
 }

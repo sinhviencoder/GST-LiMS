@@ -15,12 +15,6 @@
 								        <div class="modal-body">
 								          <a href="/login" th:utext="${message}">Vui long dang nhap</a>
 								        </div>
-								        
-								        <!-- Modal footer -->
-								        <div class="modal-footer">
-								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								        </div>
-								        
 								      </div>
 								    </div>
 								  </div>
@@ -39,12 +33,6 @@
 								        <div class="modal-body">
 								          <h3>Bạn đã mượn trước đó rồi vui lòng xem profile</h3>
 								        </div>
-								        
-								        <!-- Modal footer -->
-								        <div class="modal-footer">
-								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								        </div>
-								        
 								      </div>
 								    </div>
 								  </div>
@@ -61,7 +49,7 @@
 								        
 								        <!-- Modal body -->
 								        <div class="modal-body">
-								        <table border="1px">
+								        <table class="table table-bordered">
 								        	<tr>
 								        		<td>#</td>
 								        		<td th:utext="${bookOrder.bookId}"></td>
@@ -75,7 +63,11 @@
 								        		<td th:utext="${ bookOrder.author != null ? bookOrder.author.authorId : 'không có'}">none</td>
 								        	</tr>
 								        	<tr>
-								        		<td>Ngày Cuối Cùng Nhận Sách</td>
+								        		<td>Thể Loại</td>
+								        		<td th:utext="${ bookOrder.category != null ? bookOrder.category.name : 'không có'}">none</td>
+								        	</tr>
+								        	<tr>
+								        		<td>Ngày Cuối Trả sách</td>
 								        		<td th:utext="${#dates.format(endDateOrder, 'dd/MMM/yyyy')}">none</td>
 								        	</tr>
 								        
@@ -91,28 +83,49 @@
 								      </div>
 								    </div>
 								  </div>
-								  
 								  <div sec:authorize="isAuthenticated()" th:fragment="reserve" class="modal" id="modal-book-cart">
 								    <div class="modal-dialog">
 								      <div class="modal-content">
 								      
 								        <!-- Modal Header -->
 								        <div class="modal-header">
-								          <h4 class="modal-title" th:utext="${message}">Thu vien da het sach</h4>
+								          <h4 class="modal-title" th:utext="${message}">Tien Hanh Muon Sach</h4>
 								          <button type="button" class="close" data-dismiss="modal">&times;</button>
 								        </div>
 								        
 								        <!-- Modal body -->
 								        <div class="modal-body">
-								          <h3>Bạn có thể đặt giử sách vào thơi gian sau</h3>
+									        <table class="table table-bordered">
+									        	<tr>
+									        		<td>#</td>
+									        		<td th:utext="${bookOrder.bookId}"></td>
+									        	</tr>
+									        	<tr>
+									        		<td>Tên Sách</td>
+									        		<td th:utext="${bookOrder.name}"></td>
+									        	</tr>
+									        	<tr>
+									        		<td>Tác giải</td>
+									        		<td th:utext="${ bookOrder.author != null ? bookOrder.author.authorId : 'không có'}">none</td>
+									        	</tr>
+									        	<tr>
+									        		<td>Thể Loại</td>
+									        		<td th:utext="${ bookOrder.category != null ? bookOrder.category.name : 'không có'}">none</td>
+									        	</tr>
+									        	<tr>
+									        		<td>Ngày Cuối Trả sách</td>
+									        		<td th:utext="${#dates.format(endDateOrder, 'dd/MMM/yyyy')}">none</td>
+									        	</tr>
+									        
+									        </table>
 								        </div>
 								        
 								        <!-- Modal footer -->
 								        <div class="modal-footer">
-								          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								          <button id="confirm-book-order" th:value="${bookOrder.bookId}" type="button" class="btn btn-success">Xác Nhận Mượn Trước</button>
+								          <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
 								        </div>
 								        
 								      </div>
 								    </div>
 								  </div>
-								  

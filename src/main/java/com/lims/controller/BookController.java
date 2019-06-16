@@ -44,8 +44,30 @@ public class BookController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
 		page = page - 1;
-		model.addAttribute("books", bookService.getBookdAll());
 		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
+		model.addAttribute("bookPage", bookPage);
+		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
+		return "view/book";
+	}
+
+	@RequestMapping(value = { "/book/search" }, method = RequestMethod.GET)
+	public String pageBookSearch(Model model, Book book,
+			@RequestParam(value = "search-type", required = false) String searchType,
+			@RequestParam(value = "search-text", required = false) String searchText) {
+
+		Page<Book> bookPage = null;
+
+		if (searchType.equalsIgnoreCase("author")) {
+			bookPage = bookService.findByAuthorNameLike(searchText, PageRequest.of(0, 16));
+		} else if (searchType.equalsIgnoreCase("bookName")) {
+			bookPage = bookService.findByNameLike(searchText, PageRequest.of(0, 16));
+		} else if (searchType.equalsIgnoreCase("category")) {
+			bookPage = bookService.findByCategoryNameLike(searchText, PageRequest.of(0, 16));
+		} else {
+			// fulltext
+			bookPage = bookService.findByNameLike(searchText, PageRequest.of(0, 16));
+
+		}
 		model.addAttribute("bookPage", bookPage);
 		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
 		return "view/book";
@@ -55,7 +77,6 @@ public class BookController {
 	public String pageBookPage(Model model, Book book,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		page = page - 1;
-		model.addAttribute("books", bookService.getBookdAll());
 		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
 		model.addAttribute("bookPage", bookPage);
 		return "view/book-pagination :: #content";
@@ -72,8 +93,9 @@ public class BookController {
 		}
 
 		// Check co dang order book nay khong (muon doc ma chua tra)
-		Order orderTmp = orderService.getOrderByUsernameAndBookId(principal.getName(), bookId);
-		if (orderTmp != null && orderTmp.getStatus() != 4) {
+		// status 4 la da return
+		Order orderTmp = orderService.getOrderByUsernameAndBookIdAndStatusAndStatus(principal.getName(), bookId, 4, 3);
+		if (orderTmp != null) {
 			model.addAttribute("message", "Bạn đã đặt mượn sách từ trước, mỗi người chỉ đặt tối đa một quyển");
 			return "view/book-order-cart :: orderNotReturn";
 		}
@@ -84,11 +106,25 @@ public class BookController {
 		if (bookOrder == null) {
 
 			model.addAttribute("message", "Hiện tại sách được mượn hết bạn có thể đặt giửa chổ trước");
+			Date endDateOrder = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(endDateOrder);
+			c.add(Calendar.DATE, 15);
+			endDateOrder = c.getTime();
+			model.addAttribute("endDateOrder", endDateOrder);
+			model.addAttribute("bookOrder", bookRepository.findById(bookId).get());
 			return "view/book-order-cart :: reserve";
-			
+
 		} else {
 
 			model.addAttribute("message", "Tiếng hành đặt sách");
+
+			Date endDateOrder = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(endDateOrder);
+			c.add(Calendar.DATE, 15);
+			endDateOrder = c.getTime();
+			model.addAttribute("endDateOrder", endDateOrder);
 			model.addAttribute("bookOrder", bookOrder);
 		}
 
@@ -106,8 +142,8 @@ public class BookController {
 		}
 
 		// Check co dang order book nay khong (muon doc ma chua tra)
-		Order orderTmp = orderService.getOrderByUsernameAndBookId(principal.getName(), bookId);
-		if (orderTmp != null && orderTmp.getStatus() != 4) {
+		Order orderTmp = orderService.getOrderByUsernameAndBookIdAndStatusAndStatus(principal.getName(), bookId, 4, 3);
+		if (orderTmp != null) {
 			model.addAttribute("message", "Bạn đã đặt mượn sách từ trước, mỗi người chỉ đặt tối đa một quyển");
 			return "view/book-order-cart";
 		}
@@ -116,9 +152,28 @@ public class BookController {
 		// neu book het cho phep dat truoc
 		Book bookOrder = bookRepository.findByBookIdAndQuantityActualGreaterThan(bookId, 1);
 		if (bookOrder == null) {
-			model.addAttribute("message", "Hiện tại sách được mượn hết bạn có thể đặt giửa chổ trước");
+			model.addAttribute("message", "Tiếng hành đặt trước sách");
 
-			return "view/book-order-cart :: reserve";
+			Order order = new Order();
+			order.setUser(userService.getUserByUsername(principal.getName()));
+
+			Date endDateOrder = new Date();
+			Calendar c = Calendar.getInstance();
+			c.setTime(endDateOrder);
+			c.add(Calendar.DATE, 15);
+			endDateOrder = c.getTime();
+			order.setStartDate(new Date());
+			order.setEndDate(endDateOrder);
+
+			order.setStatus(5);
+			bookOrder = bookRepository.findById(bookId).get();
+			bookOrder.setQuantityActual(bookOrder.getQuantityActual() - 1);
+			order.setBook(bookOrder);
+
+			bookService.save(bookOrder);
+			orderService.save(order);
+			model.addAttribute("order", order);
+			return "view/book-order-cart-success";
 		} else {
 			model.addAttribute("message", "Tiếng hành đặt sách");
 
@@ -145,8 +200,6 @@ public class BookController {
 
 			bookService.save(bookOrder);
 			orderService.save(order);
-
-			System.out.println(order.getBook().getBookId());
 			model.addAttribute("order", order);
 			return "view/book-order-cart-success";
 		}

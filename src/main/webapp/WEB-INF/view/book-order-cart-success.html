@@ -14,10 +14,9 @@
 								        <!-- Modal body -->
 								        <div class="modal-body">
 									        <div class="alert alert-success">
-											  <strong>Success!</strong> Bạn đã đặt mượn sách.
-											  <span>Ngày trả: 12/4/2019</span>
+											  Bạn đã đặt mượn sách trước.
 											</div>
-									        <table border="1px">
+									        <table class="table table-bordered">
 									        	<tr>
 									        		<td>#</td>
 									        		<td th:utext="${order.book.bookId}"></td>
@@ -31,8 +30,8 @@
 									        		<td th:utext="${ order.book.author != null ? order.book.author.authorId : 'không có'}">none</td>
 									        	</tr>
 									        	<tr>
-									        		<td>Ngày Cuối Cùng Nhận Sách</td>
-									        		<td th:utext="${#dates.format(endDateOrder, 'dd/MMM/yyyy')}">none</td>
+									        		<td>Ngày Cuối Trả sách</td>
+									        		<td th:utext="${#dates.format(order.endDate, 'dd/MMM/yyyy')}">none</td>
 									        	</tr>
 									        
 									        </table>

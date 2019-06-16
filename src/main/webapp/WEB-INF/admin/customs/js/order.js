@@ -18,7 +18,22 @@
                 data: 'endDate', title: 'End Date'
             },
             {
-                data: 'status', title: 'Status'
+            	data: 'note', title: 'Note'
+            },
+            {
+                data: 'status',
+                render: function(data, type, full) {
+                	let tagStatus = '<select id="order-status" data="'+ full.orderId+ '">'
+					                    +'<option value="1" '+ ((full.status == 1) ? "selected" : "") +'>Chưa xử lý</option>'
+					                    +'<option value="2" '+ ((full.status == 2) ? "selected" : "") +'>Approved</option>'
+					                    +'<option value="3" '+ ((full.status == 3) ? "selected" : "") +'>Reject</option>'
+					                    +'<option value="4" '+ ((full.status == 4) ? "selected" : "") +'>Return</option>'
+					                    +'<option value="4" '+ ((full.status == 5) ? "selected" : "") +'>Reserve</option>'
+				                    +'</select>';
+                	return tagStatus;
+					
+				},
+                title: 'Status'
             },
             {
             	title: 'Action'
@@ -76,3 +91,59 @@
 				}
 			});
 		}
+
+  	$('body').on('change', '#order-status', function() {
+  		let orderId = $(this).attr('data');
+  		console.log(orderId);
+		let orderStatus = $(this).children('option:selected').val();
+		
+		let order = {
+				'orderId' : orderId,
+				'status' : orderStatus
+		};
+		
+		if(orderStatus == 3){
+			$('#modal-confirm-order-reject').modal('toggle');
+			$('body').on('click', '#btn-confirm-order-reject', function() {
+				let noteOrder = $('#note-confirm-order-reject').val();
+				order.note = noteOrder;
+				console.log(noteOrder);
+				$.ajax({
+					type : "POST",
+					url : "/admin/order/update-status",
+					data : JSON.stringify(order),
+					global : false,
+					contentType : "application/json; charset=utf-8",
+					dataType : "json",
+					success : function(data) {
+						//alert(data.messages)
+						$('#order-datatable').DataTable().ajax.reload();
+						$('#modal-confirm-order-reject').modal('hide');
+						console.log(data);
+					},
+					error : function(error) {
+						console.log(error);
+					}
+				});
+			});
+			
+		}else{
+			$.ajax({
+				type : "POST",
+				url : "/admin/order/update-status",
+				data : JSON.stringify(order),
+				global : false,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				success : function(data) {
+					alert(data.messages)
+					console.log(data);
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		}
+	});
+  	
+  	
