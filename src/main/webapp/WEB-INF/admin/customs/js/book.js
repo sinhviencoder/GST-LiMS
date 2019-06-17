@@ -41,9 +41,9 @@
         		 "bSearchable": false,
                 "aTargets": [-1],
                 "mRender": function (data, type, full) {
-                     return '<button id="edit_post" style="margin-left: 5px" class="btn btn-sm btn-warning" value="'+ data.userId + '" data-toggle="tooltip" data-original-title="edit"><i class="fa fa-pencil-square-o"></i></button>'
-                     +'<button id="detail_post" style="margin-left: 5px" class="btn btn-sm btn-info" value="'+ data.userId + '" data-toggle="tooltip" data-original-title="detail"><i class="fa fa-align-justify"></i></button>'
-                     +'<button id="delete_post" style="margin-left: 5px" class="btn btn-sm btn-danger" value="'+ data.userId + '" data-toggle="tooltip" data-original-title="delete"><i class="fa fa-trash-o"></i></button>';
+                     return '<button id="edit-book" style="margin-left: 5px" class="btn btn-sm btn-warning" value="'+ data.bookId + '" data-toggle="tooltip" data-original-title="edit"><i class="fa fa-pencil-square-o"></i></button>'
+                     +'<button id="detail-book" style="margin-left: 5px" class="btn btn-sm btn-info" value="'+ data.bookId + '" data-toggle="tooltip" data-original-title="detail"><i class="fa fa-align-justify"></i></button>'
+                     +'<button id="delete-book" style="margin-left: 5px" class="btn btn-sm btn-danger" value="'+ data.bookId + '" data-toggle="tooltip" data-original-title="delete"><i class="fa fa-trash-o"></i></button>';
                  }
              }
           ],
@@ -75,10 +75,33 @@
 				global : false,
 				success : function(data) {
 					console.log(data);
-					$( "form#form-book" ).replaceWith(data);
+					$("form#form-book" ).replaceWith(data);
 				},
 				error : function(error) {
 					console.log(error);
 				}
 			});
 		}
+  	
+  	$('body').on('click', '#delete-book', function() {
+  		let bookId = $(this).val();
+  		
+  		console.log(bookId);
+  		
+  		$.ajax({
+			type : "DELETE",
+			url : "/api/book/" + bookId,
+			global : false,
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : function(data) {
+				toastr.success(data.messages, data.messages, {
+					closeButton : true
+				});
+				console.log(data.messages);
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		});
+  	});

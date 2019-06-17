@@ -4,11 +4,20 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,7 +74,7 @@ public class BookController {
 			bookPage = bookService.findByCategoryNameLike(searchText, PageRequest.of(0, 16));
 		} else {
 			// fulltext
-			bookPage = bookService.findByNameLike(searchText, PageRequest.of(0, 16));
+			bookPage = bookService.fullText(searchText, PageRequest.of(0, 16));
 
 		}
 		model.addAttribute("bookPage", bookPage);
@@ -204,4 +213,62 @@ public class BookController {
 			return "view/book-order-cart-success";
 		}
 	}
+	
+	
+	private class SalarySpecification implements Specification<Book> {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private final Integer minSalary;
+        private final Integer maxSalary;
+
+        SalarySpecification(DataTablesInput input) {
+            String salaryFilter = input.getColumn("salary").getSearch().getValue();
+            if (!StringUtils.hasText(salaryFilter)) {
+                minSalary = maxSalary = null;
+                return;
+            }
+            String[] bounds = salaryFilter.split(";");
+            minSalary = getValue(bounds, 0);
+            maxSalary = getValue(bounds, 1);
+        }
+
+        private Integer getValue(String[] bounds, int index) {
+            if (bounds.length > index && StringUtils.hasText(bounds[index])) {
+                try {
+                    return Integer.valueOf(bounds[index]);
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+            Expression<Integer> salary = root.get("salary").as(Integer.class);
+            if (minSalary != null && maxSalary != null) {
+                return criteriaBuilder.between(salary, minSalary, maxSalary);
+            } else if (minSalary != null) {
+                return criteriaBuilder.greaterThanOrEqualTo(salary, minSalary);
+            } else if (maxSalary != null) {
+                return criteriaBuilder.lessThanOrEqualTo(salary, maxSalary);
+            } else {
+                return criteriaBuilder.conjunction();
+            }
+        }
+    }
+
+    private class ExcludeAnalystsSpecification implements Specification<Book> {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		@Override
+        public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+            return criteriaBuilder.notEqual(root.get("position"), "Analyst");
+        }
+    }
 }

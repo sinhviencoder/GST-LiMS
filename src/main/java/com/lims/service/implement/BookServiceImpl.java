@@ -80,4 +80,10 @@ public class BookServiceImpl implements BookService {
 		return bookRepository.findByCategoryNameLike(categoryName, pageable);
 	}
 
+	@Override
+	public Page<Book> fullText(String searchText, Pageable pageable) {
+		return bookRepository.findByAuthorNameLikeOrNameLikeOrCategoryNameLikeOrDescriptionLike(searchText, searchText,
+				searchText, searchText, pageable);
+	}
+
 }

@@ -33,6 +33,9 @@ public interface BookService {
 	Page<Book> findByAuthorNameLike(String authorName, Pageable pageable);
 
 	Page<Book> findByNameLike(String bookName, Pageable pageable);
+	
+	Page<Book> fullText(String searchText, Pageable pageable);
+	
 
 	Page<Book> findByCategoryNameLike(String categoryName, Pageable pageable);
 }

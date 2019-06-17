@@ -28,7 +28,7 @@
 					                    +'<option value="2" '+ ((full.status == 2) ? "selected" : "") +'>Approved</option>'
 					                    +'<option value="3" '+ ((full.status == 3) ? "selected" : "") +'>Reject</option>'
 					                    +'<option value="4" '+ ((full.status == 4) ? "selected" : "") +'>Return</option>'
-					                    +'<option value="4" '+ ((full.status == 5) ? "selected" : "") +'>Reserve</option>'
+					                    +'<option value="5" '+ ((full.status == 5) ? "selected" : "") +'>Reserve</option>'
 				                    +'</select>';
                 	return tagStatus;
 					

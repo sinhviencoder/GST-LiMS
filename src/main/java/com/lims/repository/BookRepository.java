@@ -17,4 +17,8 @@ public interface BookRepository extends DataTablesRepository<Book, Long> {
 	Page<Book> findByNameLike(String bookName, Pageable pageable);
 
 	Page<Book> findByCategoryNameLike(String categoryName, Pageable pageable);
+
+	Page<Book> findByAuthorNameLikeOrNameLikeOrCategoryNameLikeOrDescriptionLike(String authorName, String bookName,
+			String categoryName, String description, Pageable pageable);
+
 }
