@@ -23,6 +23,6 @@ public interface BookRepository extends DataTablesRepository<Book, Long> {
 
 	Page<Book> findByAuthorNameLikeOrNameLikeOrCategoryNameLikeOrDescriptionLike(String authorName, String bookName,
 			String categoryName, String description, Pageable pageable);
-	@Query(value = "select book.book_id, book.name, book.author_id, book.category_id, book.image, book.status, book.description, book.quantity ,count(orders.book_id) as quantityActual from orders join book on orders.book_id= book.book_id where month(orders.end_date)  between 5  and 6 group by book.book_id order by  quantityActual desc limit 3;", nativeQuery = true)
+	@Query(value = "select book.book_id, book.name, book.author_id, book.category_id, book.image, book.status, book.description, book.quantity ,count(orders.book_id) as quantity_actual from orders join book on orders.book_id= book.book_id where month(orders.end_date)  between 5  and 7 group by book.book_id order by  quantity_actual desc limit 2;", nativeQuery = true)
 	List<Book> topBook();
 }
