@@ -9,11 +9,11 @@
 		<section layout:fragment="page-title" id="page-title" class="page-title-mini page-title-right">
 
 			<div class="container clearfix">
-				<h1>News</h1>
-				<span>A Short Page Title Tagline</span>
+				<h1>Sách</h1>
+				
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Book</li>
+					<li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Sách</li>
 				</ol>
 			</div>
 
@@ -23,17 +23,15 @@
 			<div class="content-wrap">
 
 				<div class="container clearfix">
-				
-					<form class="form-inline" action="/book/search" layout:replace="view/book-search :: book-search"></form>
-
+                     <form class="form-inline" action="/book/search" layout:replace="view/book-search :: book-search"></form>
 					<!-- Shop
 					============================================= -->
 					<div id="shop" class="shop grid-container clearfix" data-layout="fitRows">
 
 						<div class="product clearfix" th:each="book: ${bookPage.getContent()}">
 							<div class="product-image">
-								<a href="#" ><img src="/images/projects/1.jpg" alt="Checked Short Dress"></a>
-								<a href="#"><img src="/images/projects/1.jpg" alt="Checked Short Dress"></a>
+								<a th:href="@{/book/{id}(id=${book.bookId})}"  ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
+								
 								<div class="product-overlay">
 									<a href="#" id="add-to-cart" th:data="${book.bookId}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
 									<a href="#" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>

@@ -3,6 +3,7 @@ package com.lims.controller;
 import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,6 +19,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,7 +128,7 @@ public class BookController {
 
 		} else {
 
-			model.addAttribute("message", "Tiếng hành đặt sách");
+			model.addAttribute("message", "Tiến hành đặt sách");
 
 			Date endDateOrder = new Date();
 			Calendar c = Calendar.getInstance();
@@ -271,4 +273,19 @@ public class BookController {
             return criteriaBuilder.notEqual(root.get("position"), "Analyst");
         }
     }
+    @RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+//	@ResponseBody
+	public String getDetailBook(Model model, @PathVariable("id") int id
+			) {
+		
+		Optional<Book> bookByID =bookService.getBookById(id);
+	//	
+		
+		System.out.println("gau gau" +id);
+		System.out.println("t goi m"+ bookByID.get().getName());
+		
+		model.addAttribute("bookByID", bookByID.get());
+	
+		return "view/book-detail";
+	}
 }

@@ -6,7 +6,7 @@
                 data: 'bookId', title: '#'
             },
             {
-                data: 'name', title: 'Name'
+                data: 'name', title: 'Name', "sClass":  "text-left"
             },
             {
                 data: 'quantity', title: 'Quantity'
@@ -83,7 +83,7 @@
 			});
 		}
   	
-  	$('body').on('click', '#delete-book', function() {
+  	$('.main-panel').on('click', '#delete-book', function() {
   		let bookId = $(this).val();
   		
   		console.log(bookId);
@@ -95,7 +95,8 @@
 			contentType : "application/json; charset=utf-8",
 			dataType : "json",
 			success : function(data) {
-				toastr.success(data.messages, data.messages, {
+				console.log(data);
+				toastr.success('Xóa Book', data.messages, {
 					closeButton : true
 				});
 				console.log(data.messages);

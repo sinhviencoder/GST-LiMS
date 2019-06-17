@@ -11,7 +11,7 @@ import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import com.lims.entity.Book;
 
 public interface BookService {
-
+	List<Book> getTopBook();
 	Iterable<Book> getBookdAll();
 
 	Page<Book> getBookAll(Pageable pageable);

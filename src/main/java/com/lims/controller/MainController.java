@@ -1,5 +1,7 @@
 package com.lims.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.lims.entity.Book;
 import com.lims.repository.BookRepository;
 import com.lims.repository.UserRepository;
+import com.lims.service.BookService;
 import com.lims.service.CategoryService;
 
 @Controller
@@ -23,7 +27,8 @@ public class MainController {
 
 	@Autowired
 	UserRepository userRepository;
-
+@Autowired
+BookService bookService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {
@@ -33,6 +38,9 @@ public class MainController {
 		String username = auth.getName();
 		System.out.println(username);
 		model.addAttribute("user", userRepository.findByUsername(username));
+		List<Book> bookTop = bookService.getTopBook();
+
+		model.addAttribute("bookTop", bookTop);
 		return "view/index";
 	}
 

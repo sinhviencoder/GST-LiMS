@@ -85,5 +85,9 @@ public class BookServiceImpl implements BookService {
 		return bookRepository.findByAuthorNameLikeOrNameLikeOrCategoryNameLikeOrDescriptionLike(searchText, searchText,
 				searchText, searchText, pageable);
 	}
+	@Override
+	public List<Book> getTopBook() {
+		return bookRepository.topBook();
+	}
 
 }

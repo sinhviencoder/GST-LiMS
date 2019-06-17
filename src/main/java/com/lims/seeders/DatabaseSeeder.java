@@ -61,9 +61,11 @@ public class DatabaseSeeder {
 			Author author1 = new Author();
 			author1.setName("Nguyễn Nhật Ánh");
 			authorRepository.save(author1);
+			
 			Category category1 = new Category();
 			category1.setName("Văn Học");
 			categoryRepository.save(category1);
+			
 			Book book1 = new Book();
 			book1.setName("Tôi thấy hoa vàng trên cỏ xanh");
 			book1.setQuantity(100);
@@ -90,7 +92,7 @@ public class DatabaseSeeder {
 			author3.setName("Tony Buổi Sáng");
 			authorRepository.save(author3);
 			Category category3 = new Category();
-			category3.setName("Tiểu Thuyết");
+			category3.setName("Kiến Trúc");
 			categoryRepository.save(category3);
 			Book book3 = new Book();
 			book3.setName("Tôi thấy hoa vàng trên cỏ xanh");
