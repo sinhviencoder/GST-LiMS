@@ -55,7 +55,7 @@ public class BookController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
 		page = page - 1;
-		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
+		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 4));
 		model.addAttribute("bookPage", bookPage);
 		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
 		return "view/book";
@@ -88,7 +88,7 @@ public class BookController {
 	public String pageBookPage(Model model, Book book,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		page = page - 1;
-		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
+		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 4));
 		model.addAttribute("bookPage", bookPage);
 		return "view/book-pagination :: #content";
 	}

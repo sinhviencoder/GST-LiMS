@@ -1,5 +1,7 @@
 package com.lims.controller.admin;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -74,5 +77,24 @@ public class AdminCategoryController {
 	@ResponseBody
 	public DataTablesOutput<Category> list(@Valid DataTablesInput input) {
 		return categoryService.findAll(input);
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	public String edit(@Valid Category category, BindingResult bindResult, Model model,@PathVariable("id") long id) {
+		if (bindResult.hasErrors()) {
+			return "admin/admin-category-form-edit";
+		}
+		System.out.println(category.getCategoryId());
+		categoryService.update(category);
+	
+		return "redirect:/admin/category";
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String getFormCategoryEdit(Category category, Model model, @PathVariable("id") long id) {
+		Category categoryByID= categoryService.getCategoryById(id).get();
+		model.addAttribute("categoryByID", categoryByID);
+		model.addAttribute("categorys", categoryService.getCategoryAll());
+		return "admin/admin-category-form-edit";
 	}
 }

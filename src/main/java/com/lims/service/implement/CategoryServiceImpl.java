@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("status", "success");
-			jsonObject.put("title", "Updated successfully");
+			jsonObject.put("title", "Save successfully");
 			Category caTmp = categoryRepository.save(category);
 			jsonObject.put("messages", "#" + caTmp.getCategoryId() + "\t" + caTmp.getName());
 		} catch (JSONException e) {
@@ -51,7 +51,6 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	@org.springframework.transaction.annotation.Transactional
 	public String update(Category category) {
 		JSONObject jsonObject = new JSONObject();
 		try {

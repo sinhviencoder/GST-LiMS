@@ -66,9 +66,10 @@ public class ApiCategoryController {
 	public String delete(@PathVariable long categoryId) {
 		return categoryService.delete(categoryId);
 	}
-	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{categoryId}", method = RequestMethod.PUT)
 public String edit(@PathVariable long categoryId, Category category) {
 	return categoryService.update(category);
 	
 }
+	
 }

@@ -96,6 +96,7 @@ public class DatabaseSeeder {
 			book1.setQuantityActual(100);
 			book1.setAuthor(author1);
 			book1.setCategory(category1);
+			book1.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book1);
 
 			Author author2 = new Author();
@@ -110,6 +111,7 @@ public class DatabaseSeeder {
 			book2.setQuantityActual(100);
 			book2.setAuthor(author2);
 			book2.setCategory(category2);
+			book2.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book2);
 			
 			Author author3 = new Author();
