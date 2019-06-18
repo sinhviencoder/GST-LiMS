@@ -39,6 +39,29 @@
              }
           ],
     });
+	$('.main-panel').on('click', '#delete_post', function() {
+  		let categoryId = $(this).val() ;
+  		
+  		console.log(categoryId);
+  		
+  		$.ajax({
+			type : "DELETE",
+			url : '/api/category/' + categoryId ,
+			global : false,
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				toastr.success('Xóa Category', data.messages, {
+					closeButton : true
+				});
+				console.log(data.messages);
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		});
+  	});
 
 	
 	$('#category-get-form').on('click', function(e) {
@@ -66,4 +89,30 @@
 					console.log(error);
 				}
 			});
-		}
+  	}
+  
+  	$('body').on('click', '#edit_post', function() {
+  		let categoryId = $(this).val();
+  		
+  		console.log(categoryId);
+  		
+  		$.ajax({
+			type : "PUT",
+			url : "/api/category/edit" + categoryId,
+			global : false,
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				toastr.success('Xóa Category', data.messages, {
+					closeButton : true
+				});
+				console.log(data.messages);
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		});
+  	});
+
+  	

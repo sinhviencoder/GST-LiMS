@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
@@ -60,9 +62,13 @@ public class ApiCategoryController {
 		return categoryService.update(category);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String delete(@PathVariable long id) {
-		return categoryService.delete(id);
+	@RequestMapping(value = "/{categoryId}", method = RequestMethod.DELETE)
+	public String delete(@PathVariable long categoryId) {
+		return categoryService.delete(categoryId);
 	}
-
+	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
+public String edit(@PathVariable long categoryId, Category category) {
+	return categoryService.update(category);
+	
+}
 }
