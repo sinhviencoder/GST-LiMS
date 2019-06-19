@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/admin-layout}">
     <head>
-        <title>Tác giả</title>
+        <title>Book</title>
     </head>
 	<th:block layout:fragment="stylesheets">
        <link rel="stylesheet" href="/admin/oss/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -16,62 +16,69 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 		<script type="text/javascript" src="" th:src="@{/admin/customs/js/jquery.spring-friendly.js}"></script>
-		<script type="text/javascript" src="" th:src="@{/admin/customs/js/author.js}"></script>
+		<script type="text/javascript" src="" th:src="@{/admin/customs/js/request-buy-book.js}"></script>
 	</th:block>
     <body>
         <div layout:fragment="content" class="content-wrapper">
+        <div class="modal" id="modal-rbb">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Vui lòng xác nhận</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->
+		        <div class="modal-body">
+		        <input type="text" class="form-control" placeholder="Nhập lí do hủy yêu cầu">
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		          <button type="button" id="btn1" class="btn btn-success">Xác nhận</button>
+		          <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Quản lý tác giả</h4>
+              <h4 class="card-title">Quản lí yêu cầu đặt sách</h4>
               <div class="row">
                 <div class="col-12">
                   <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home-1" role="tab" aria-controls="home-1" aria-selected="true">Danh sách</a>
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home-1" role="tab" aria-controls="home-1" aria-selected="true">Data</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-1" role="tab" aria-controls="profile-1" aria-selected="false">Thêm tác giả</a>
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-1" role="tab" aria-controls="profile-1" aria-selected="false">Add/Update</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact-1" role="tab" aria-controls="contact-1" aria-selected="false">Chi tiết</a>
+                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact-1" role="tab" aria-controls="contact-1" aria-selected="false">Detail</a>
                     </li>
                     <li style="margin: 15px 20px 0 0; margin-left: auto;">
-		                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button>
+		                <button type="button" id="ok1" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button>
 		                <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-refresh"></i></button>
 		            </li>
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane active" id="home-1" role="tabpanel" aria-labelledby="home-tab">
-	                  	<table id="author-datatable" class="table table-bordered display table-hover responsive nowrap table-striped" width="100%"></table>
+	                  	<table id="request-buy-book-datatable" class="table table-bordered display table-hover responsive nowrap table-striped" width="100%"></table>
                     </div>
                     <div class="tab-pane fade show" id="profile-1" role="tabpanel" aria-labelledby="profile-tab">
 			            <div class="col-md-12 grid-margin stretch-card">
 			              <div class="card">
 			                <div class="card-body">
-			                  <h4 class="card-title">Thêm tác giả</h4>
-			                 <form id="form-author"></form>
+			                  <h4 class="card-title"></h4>
+			                  <form id="form-request-book"></form>
 			                </div>
 			              </div>
 			            </div>
                     </div>
-                    <div class="tab-pane" id="contact-1" role="tabpanel" aria-labelledby="contact-tab">
-                      <h4>Contact us </h4>
-                      <p>
-                        Feel free to contact us if you have any questions!
-                      </p>
-                      <p>
-                        <i class="mdi mdi-phone text-info"></i>
-                        +123456789
-                      </p>
-                      <p>
-                        <i class="mdi mdi-email-outline text-success"></i>
-                        contactus@example.com
-                      </p>
-                        A.  <%= 27/3 %> 
-   B.  ${3 + 3 + 3} 
-   C.  <c:out value="9"> 
-   D.  "9" 
-                    </div>
+                   
                   </div>
                 </div>
               </div>

@@ -1,8 +1,8 @@
 package com.lims.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.datatables.repository.DataTablesRepository;
 
 import com.lims.entity.Author;
 
-public interface AuthorRepository extends CrudRepository<Author, Long> {
+public interface AuthorRepository extends DataTablesRepository<Author, Long> {
 }

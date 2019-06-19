@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class RequestBuyBook {
@@ -15,11 +16,18 @@ public class RequestBuyBook {
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
-	@ManyToOne
-	@JoinColumn(name = "bookId")
-	private Book book;
-	private boolean isApproval;
-	private String description;
+	private long status;
+	@NotEmpty(message = "Không được để trống Nhà Xuất Bản")
+	private String publisher;
+	@NotEmpty(message = "Không được để trống Tên sách")
+	private String bookName;
+	@NotEmpty(message = "Không được để trống Tên tác giả")
+	private String authorName;
+	@NotEmpty(message = "Không được để trống thể loại")
+	private String categoryName;
+	private String note;
+	@NotEmpty(message = "Không được để trống số lượng")
+	private String quantity;
 
 	public long getRequestBuyBookId() {
 		return requestBuyBookId;
@@ -37,28 +45,60 @@ public class RequestBuyBook {
 		this.user = user;
 	}
 
-	public boolean isApproval() {
-		return isApproval;
+	public long getStatus() {
+		return status;
 	}
 
-	public void setApproval(boolean isApproval) {
-		this.isApproval = isApproval;
+	public void setStatus(long status) {
+		this.status = status;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getPublisher() {
+		return publisher;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
-	public Book getBook() {
-		return book;
+	public String getBookName() {
+		return bookName;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
 	}
 
 }

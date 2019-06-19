@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thêm tác giả</title>
+</head>
+<body>
+<form id="form-author" action="#" th:action="@{/admin/author/add}" th:object="${author}" method="post" class="forms-sample">
+  <div class="form-group row" th:classappend="${#fields.hasErrors('name')} ? has-danger : ''">
+    <label class="col-sm-3 col-form-label" th:for="name">Tên tác giả*</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{name}" class="form-control" placeholder="Tên tác giả">
+      <label  th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error mt-2 text-danger" for="name">Author Name Error.</label>
+    </div>
+  </div>
+  <div class="form-group row" th:classappend="${#fields.hasErrors('description')} ? has-danger : ''">
+    <label  th:for="description" class="col-sm-3 col-form-label">Chi tiết</label>
+    <div class="col-sm-9">
+      <input type="text" th:field="*{description}" class="form-control" placeholder="Chi tiết">
+      <label th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error mt-2 text-danger">Description Error.</label>
+    </div>
+  </div>
+  
+   <button type="button" class="btn btn-primary mr-2" onclick="saveAuthor()">Lưu</button>
+  <script th:inline="javascript">
+	    var isSuccess = /*[[${isSuccess}]]*/ false;
+		if(isSuccess){
+			$('#author-datatable').DataTable().ajax.reload();
+			
+			console.log("success");
+			}else{
+			console.log("error");
+		}
+
+		if ($(".js-example-basic-single").length) {
+		  $(".js-example-basic-single").select2();
+		}
+	</script>
+</form>
+</body>
+</html>

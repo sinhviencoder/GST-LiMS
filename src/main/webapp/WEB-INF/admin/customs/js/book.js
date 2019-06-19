@@ -41,7 +41,7 @@
         		 "bSearchable": false,
                 "aTargets": [-1],
                 "mRender": function (data, type, full) {
-                     return '<button id="edit-book" style="margin-left: 5px" class="btn btn-sm btn-warning" value="'+ data.bookId + '" data-toggle="tooltip" data-original-title="edit"><i class="fa fa-pencil-square-o"></i></button>'
+                     return '<a id="edit-book" style="margin-left: 5px;  display: inline-block;" class="btn btn-sm btn-warning" href="/admin/book/edit/'+ data.bookId + '" data-toggle="tooltip" data-original-title="edit"><i class="fa fa-pencil-square-o"></i></a>'
                      +'<button id="detail-book" style="margin-left: 5px" class="btn btn-sm btn-info" value="'+ data.bookId + '" data-toggle="tooltip" data-original-title="detail"><i class="fa fa-align-justify"></i></button>'
                      +'<button id="delete-book" style="margin-left: 5px" class="btn btn-sm btn-danger" value="'+ data.bookId + '" data-toggle="tooltip" data-original-title="delete"><i class="fa fa-trash-o"></i></button>';
                  }

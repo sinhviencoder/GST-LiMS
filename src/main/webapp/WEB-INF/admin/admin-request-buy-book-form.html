@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="form-request-book" action="#" th:action="@{/admin-request-buy-book/datatable}" th:object="${requestBuyBook}" method="post" class="forms-sample">
+  <script th:inline="javascript">
+	    var isSuccess = /*[[${isSuccess}]]*/ false;
+		if(isSuccess){
+			$('#request-buy-book-datatable').DataTable().ajax.reload();
+			
+			console.log("success");
+			}else{
+			console.log("error");
+		}
+
+		if ($(".js-example-basic-single").length) {
+		  $(".js-example-basic-single").select2();
+		}
+	</script>
+</form>
+</body>
+</html>

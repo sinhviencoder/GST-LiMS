@@ -1,8 +1,7 @@
 package com.lims.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
+import org.springframework.data.jpa.datatables.repository.DataTablesRepository;
 import com.lims.entity.RequestBuyBook;
 
-public interface RequestBuyBookRepository extends CrudRepository<RequestBuyBook, Long> {
+public interface RequestBuyBookRepository extends   DataTablesRepository<RequestBuyBook, Long> {
 }
