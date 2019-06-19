@@ -6,7 +6,7 @@
                 data: 'bookId', title: '#'
             },
             {
-                data: 'name', title: 'Name'
+                data: 'name', title: 'Name', "sClass":  "text-center"
             },
             {
                 data: 'quantity', title: 'Quantity'
