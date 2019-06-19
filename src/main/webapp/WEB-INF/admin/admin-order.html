@@ -75,7 +75,7 @@
 															<h4 class="card-title">All Order</h4>
 														</div>
 														<div class="row grid-margin">
-															<form class="form-inline">
+															<form id="filter-order" class="form-inline">
 											                    <label class="sr-only" for="orderId">Name</label>
 											                    <input type="text" class="form-control mb-2 mr-sm-2" id="orderId" placeholder="ID">
 											                  
@@ -99,11 +99,17 @@
 											                      <input type="text" class="form-control" id="endDate" placeholder="End Date">
 											                    </div>
 											                    
-											                    <label class="sr-only" for="status">Office</label>
+											                    <label class="sr-only" for="note">Note</label>
+											                    <div class="input-group mb-2 mr-sm-2">
+											                      <input type="text" class="form-control" id="note" placeholder="Note">
+											                    </div>
+											                    
+											                    <label class="sr-only" for="status">Status</label>
 											                    <div class="input-group mb-2 mr-sm-2">
 												                    <select class="form-control" id="status">
+												                        <option value="">--none--</option>
 												                        <option value="1">Chưa xử lý</option>
-												                        <option value="2" selected="">Approved</option>
+												                        <option value="2">Approved</option>
 												                        <option value="3">Reject</option>
 												                        <option value="4">Return</option>
 												                        <option value="5">Reserve</option>
@@ -112,7 +118,7 @@
 												                    </select>
 												                </div>
 												                  
-											                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+											                    <button type="button" id="search-order-all" class="btn btn-primary mb-2">Search</button>
 											                    
 											                  </form>
 											            </div>

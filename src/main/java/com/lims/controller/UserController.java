@@ -62,7 +62,7 @@ public class UserController {
 		User user = userRepository.findByUsername(username);
 		model.addAttribute("user", user);
 
-		Page<Order> orderPage = orderService.getOrderByUserId(user.getUserId(), PageRequest.of(0, 16));
+		Page<Order> orderPage = orderService.getOrderByUserId(user.getUserId(), PageRequest.of(0, 32));
 
 		model.addAttribute("orderPage", orderPage);
 

@@ -74,6 +74,7 @@
 				data : data,
 				global : false,
 				success : function(data) {
+					$('#book-datatable').DataTable().ajax.reload();
 					console.log(data);
 					$("form#form-book" ).replaceWith(data);
 				},
@@ -96,6 +97,7 @@
 			dataType : "json",
 			success : function(data) {
 				console.log(data);
+				$('#book-datatable').DataTable().ajax.reload();
 				toastr.success('Xóa Book', data.messages, {
 					closeButton : true
 				});

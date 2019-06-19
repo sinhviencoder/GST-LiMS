@@ -72,11 +72,11 @@ public class AdminBookController {
 		model.addAttribute("categorys", categoryService.getCategoryAll());
 		model.addAttribute("authors", authorService.getAuthorAll());
 		if (bindingResult.hasErrors()) {
-			return "redirect: /admin/book";
+			System.out.println("okok");
+			return "admin/admin-book-edit-form";
 		}
 		bookService.save(book);
-		model.addAttribute("isSuccess", true);
-		return "admin/admin-book-form :: form";
+		return "redirect:/admin/book";
 	}
 
 	@RequestMapping(value = "/admin/book/datatable", method = RequestMethod.GET)

@@ -36,7 +36,9 @@
 					        			<div th:case="6"><p>Quá hạn </p></div>
 					        			<div th:case="7"><p>Hủy bỏ </p></div>
 					        			
-					        			<a th:href="@{/order/renewal( orderId = ${order.orderId})}" th:if="${order.status == 2}" class="btn btn-info">Gia hạn</a>
+					        			<th:block th:with="daysDiff = ${(order.getEndDate().getTime() - order.getStartDate().getTime()) / (24 * 60 * 60 * 1000)}">
+					        			<a th:href="@{/order/renewal( orderId = ${order.orderId})}" th:if="${order.status == 2 && daysDiff < 30}" class="btn btn-info">Gia hạn</a>
+					        			</th:block>
 					        			<a th:href="@{/order/cancel( orderId = ${order.orderId})}" th:if="${order.status == 1}" class="btn btn-danger">Hủy</a>
    										</th:block>
 					        		</td>
@@ -45,7 +47,7 @@
 				        </table>
 					</div>
 				</div>
-</div>
+			</div>
 		</section>
 </body>
 </html>

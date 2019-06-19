@@ -1,4 +1,4 @@
-    $('#order-datatable').DataTable({
+var table = $('#order-datatable').DataTable({
     	ajax: '/admin/order/datatable',
         serverSide: true,
         columns: [
@@ -58,6 +58,50 @@
                  }
              }
           ],
+    });
+    
+    
+    $('select#search-order-status').change(function() {
+        var filter = '';
+        $('select#search-order-status option:selected').each(function() {
+            filter += $(this).val() + "+";
+        });
+        
+        filter = filter.substring(0, filter.length - 1);
+        
+        table.column(6).search(filter).draw();
+    });
+    
+    $('#search-order-all').click(function() {
+    	
+    	var filter0 = $('#filter-order #orderId').val();
+    	console.log(filter0);
+    	table.column(0).search(filter0);
+    	
+    	var filter1 = $('#filter-order #bookName').val();
+    	console.log(filter1);
+    	table.column(1).search(filter1);
+    	
+    	var filter2 = $('#filter-order #userName').val();
+    	table.column(2).search(filter2);
+    	
+    	var filter3 = $('#filter-order #startDate').val();
+    	table.column(3).search(filter3);
+    	
+    	var filter4 = $('#filter-order #endDate').val();
+    	table.column(4).search(filter4);
+    	
+    	var filter5 = $('#filter-order #note').val();
+    	table.column(5).search(filter5);
+    	
+    	 var filter6 = '';
+         $('#filter-order select#status option:selected').each(function() {
+             filter6 += $(this).val() + "+";
+         });
+         filter6 = filter6.substring(0, filter6.length - 1);
+         table.column(6).search(filter6)
+    	
+    	table.draw();
     });
 
 	
