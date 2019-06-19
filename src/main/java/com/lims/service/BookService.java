@@ -12,6 +12,9 @@ import com.lims.entity.Book;
 
 public interface BookService {
 	List<Book> getTopBook();
+
+	List<Book> getBookByCategory();
+
 	Iterable<Book> getBookdAll();
 
 	Page<Book> getBookAll(Pageable pageable);
@@ -33,9 +36,10 @@ public interface BookService {
 	Page<Book> findByAuthorNameLike(String authorName, Pageable pageable);
 
 	Page<Book> findByNameLike(String bookName, Pageable pageable);
-	
+
 	Page<Book> fullText(String searchText, Pageable pageable);
-	
 
 	Page<Book> findByCategoryNameLike(String categoryName, Pageable pageable);
+
+	Page<Book> getBookByCategory(long categoryId, Pageable pageable);
 }

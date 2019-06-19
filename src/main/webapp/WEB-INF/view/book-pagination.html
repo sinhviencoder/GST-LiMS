@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{view/layouts/layout}">
 <head>
-<title>Trang Chủ</title>
+<title>Trang Chá»§</title>
 </head>
 
 <body class="stretched">
 <section layout:fragment="page-title" id="page-title" class="page-title-mini page-title-right">
 
 			<div class="container clearfix">
-				<h1>Sách</h1>
+				<h1>SÃ¡ch</h1>
 				
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Sách</li>
+					<li class="breadcrumb-item"><a href="#">Trang chá»§</a></li>
+					<li class="breadcrumb-item active" aria-current="page">SÃ¡ch</li>
 				</ol>
 			</div>
 
@@ -33,8 +33,8 @@
 								<a th:href="@{/book/{id}(id=${book.bookId})}"  ><img th:src="@{${book.image}}" alt="Checked Short Dress"></a>
 								
 								<div class="product-overlay">
-									<a href="#" id="add-to-cart" th:data="${book.bookId}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="#" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" id="add-to-cart" th:data="${book.bookId}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> MÆ°á»£n SÃ¡ch</span></a>
+									<a href="#" th:href="@{/book/{bookId}( bookId = ${book.bookId} )}" class="item-quick-view"><i class="fa fa-book"></i><span> Ä�á»�c Thá»­</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
@@ -48,7 +48,7 @@
 
 					</div><!-- #shop end -->
 					
-					<ul class="pagination" style="padding-left: 500px"  >
+					<ul th:if="${categoryPagination == null}" class="pagination" style="padding-left: 500px"  >
 						<li class="page-item" ><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
 						
 						<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
@@ -56,6 +56,16 @@
 						</th:block>
 						
 						<li class="page-item"><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+					</ul>
+					
+					<ul th:if="${categoryPagination != null && categoryPagination && !bookPage.isEmpty()}" class="pagination" style="padding-left: 500px" th:with="categoryTmb = ${bookPage.getContent().get(0).getCategory()}">
+						<li class="page-item" ><a class="page-link" th:href="@{/category/pagination/{categoryId}(categoryId = ${categoryTmb.categoryId}, page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
+						
+						<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
+							<li class="page-item" th:classappend="${(bookPage.getNumber() == (i -1))} ? active : ''"><a class="page-link" th:text="${i}" th:href="@{/category/pagination/{categoryId}(categoryId = ${categoryTmb.categoryId}, page=${i})}">0</a></li>
+						</th:block>
+						
+						<li class="page-item"><a class="page-link" th:href="@{/category/pagination/{categoryId}(categoryId = ${categoryTmb.categoryId}, page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 					</ul>
 
 				</div>

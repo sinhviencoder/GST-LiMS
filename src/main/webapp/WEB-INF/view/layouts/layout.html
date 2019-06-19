@@ -81,7 +81,7 @@
 							<li sec:authorize="!isAuthenticated()"><a href="/login">Đăng Nhập</a></li>
 							<li sec:authorize="!isAuthenticated()"><a href="#">Đăng Ký</a></li>
 							<li><a href="#">Liện Hệ</a></li>
-							<li sec:authorize="isAuthenticated()" th:if="${user != null}"><a href="#" th:utext="${user.lastName}">Liện Hệ</a></li>
+							<li sec:authorize="isAuthenticated()" th:if="${user != null}"><a href="#" th:utext="${user.lastName}" th:href="@{/user-profile}">Liện Hệ</a></li>
 						</ul>
 					</div><!-- .top-links end -->
 

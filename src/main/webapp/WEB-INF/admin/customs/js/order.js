@@ -29,6 +29,8 @@
 					                    +'<option value="3" '+ ((full.status == 3) ? "selected" : "") +'>Reject</option>'
 					                    +'<option value="4" '+ ((full.status == 4) ? "selected" : "") +'>Return</option>'
 					                    +'<option value="5" '+ ((full.status == 5) ? "selected" : "") +'>Reserve</option>'
+					                    +'<option value="6" '+ ((full.status == 6) ? "selected" : "") +'>OverDue</option>'
+					                    +'<option value="7" '+ ((full.status == 7) ? "selected" : "") +'>Cancel</option>'
 				                    +'</select>';
                 	return tagStatus;
 					

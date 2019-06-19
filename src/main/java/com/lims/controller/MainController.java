@@ -27,8 +27,8 @@ public class MainController {
 
 	@Autowired
 	UserRepository userRepository;
-@Autowired
-BookService bookService;
+	@Autowired
+	BookService bookService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {

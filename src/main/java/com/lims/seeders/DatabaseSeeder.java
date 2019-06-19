@@ -65,11 +65,11 @@ public class DatabaseSeeder {
 			Author author7 = new Author();
 			author7.setName("Du Phong");
 			authorRepository.save(author7);
-			//author 4
+			// author 4
 			Author author4 = new Author();
 			author4.setName("Minh Mẫn");
 			authorRepository.save(author4);
-// author 5
+			// author 5
 			Author author5 = new Author();
 			author5.setName("Ngô Thiện");
 			authorRepository.save(author5);
@@ -81,7 +81,7 @@ public class DatabaseSeeder {
 			Category category1 = new Category();
 			category1.setName("Văn Học");
 			categoryRepository.save(category1);
-			//category 4
+			// category 4
 			Category category4 = new Category();
 			category4.setName("Toán học");
 			categoryRepository.save(category4);
@@ -89,7 +89,7 @@ public class DatabaseSeeder {
 			Category category5 = new Category();
 			category5.setName("Khoa học");
 			categoryRepository.save(category5);
-			
+
 			Book book1 = new Book();
 			book1.setName("Tôi thấy hoa vàng trên cỏ xanh");
 			book1.setQuantity(100);
@@ -113,7 +113,7 @@ public class DatabaseSeeder {
 			book2.setCategory(category2);
 			book2.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book2);
-			
+
 			Author author3 = new Author();
 			author3.setName("Tony Buổi Sáng");
 			authorRepository.save(author3);
@@ -137,7 +137,7 @@ public class DatabaseSeeder {
 			book4.setCategory(category1);
 			book4.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book4);
-			//book 5
+			// book 5
 			Book book5 = new Book();
 			book5.setName("Toán cao cấp a1");
 			book5.setQuantity(100);
@@ -146,7 +146,7 @@ public class DatabaseSeeder {
 			book5.setCategory(category4);
 			book5.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book5);
-			//book 6
+			// book 6
 			Book book6 = new Book();
 			book6.setName("Toán cao cấp A2");
 			book6.setQuantity(100);
@@ -155,7 +155,7 @@ public class DatabaseSeeder {
 			book6.setCategory(category4);
 			book6.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book6);
-			//book 7
+			// book 7
 			Book book7 = new Book();
 			book7.setName("Toán cao cấp A3");
 			book7.setQuantity(100);
@@ -164,7 +164,7 @@ public class DatabaseSeeder {
 			book7.setCategory(category4);
 			book7.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book7);
-			//book 8
+			// book 8
 			Book book8 = new Book();
 			book8.setName("Lý thuyết đồ thị");
 			book8.setQuantity(100);
@@ -227,7 +227,7 @@ public class DatabaseSeeder {
 			book14.setCategory(category2);
 			book14.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book14);
-			//book 15
+			// book 15
 			Book book15 = new Book();
 			book15.setName("Trên đường băng");
 			book15.setQuantity(100);
@@ -236,7 +236,7 @@ public class DatabaseSeeder {
 			book15.setCategory(category2);
 			book15.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book15);
-			//book 16
+			// book 16
 			Book book16 = new Book();
 			book16.setName("Trái đất tròn, lòng người góc cạnh");
 			book16.setQuantity(100);
@@ -245,7 +245,7 @@ public class DatabaseSeeder {
 			book16.setCategory(category1);
 			book16.setImage("/demos/construction/images/book/2.jpg");
 			bookRepository.save(book16);
-			//book 17
+			// book 17
 			Book book17 = new Book();
 			book17.setName("Tự yêu");
 			book17.setQuantity(100);

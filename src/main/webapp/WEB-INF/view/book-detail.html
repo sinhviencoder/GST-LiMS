@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{view/layouts/layout}">
 <head>
-	<title>Trang Chủ</title>
+	<title>Trang Chá»§</title>
 </head>
 <body>
 		
@@ -15,11 +15,11 @@
 						<div class="col-lg-6" >
 							<div class="heading-block nobottomborder bottommargin-sm">
 								<h3 th:text="${bookByID.name}"></h3>
-								<h4>Thể Loại</h4><p th:text="${bookByID.description}"></p>
+								<h4>Thể loại</h4><p th:text="${bookByID.description}"></p>
 								<h4 th:if="${bookByID.category != null}" th:text="${bookByID.category.name}"></h4>
 								<h4 th:if="${bookByID.author != null}" th:text="${bookByID.author.name}"></h4>
 							</div>
-							<a href="#" class="button button-3d noleftmargin bottommargin-sm">Mượn sách</a>
+							<a href="#" class="button button-3d noleftmargin bottommargin-sm">MÆ°á»£n sÃ¡ch</a>
 						</div>
 
 						<div class="col-lg-6">

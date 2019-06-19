@@ -16,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lims.entity.Book;
 import com.lims.entity.Order;
 import com.lims.repository.BookRepository;
+import com.lims.repository.UserRepository;
 import com.lims.service.BookService;
 import com.lims.service.CategoryService;
 import com.lims.service.OrderService;
@@ -49,16 +52,60 @@ public class BookController {
 
 	@Autowired
 	BookRepository bookRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	@RequestMapping(value = { "/book" }, method = RequestMethod.GET)
 	public String pageBook(Model model, Book book,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
 		page = page - 1;
-		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 4));
+		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
 		model.addAttribute("bookPage", bookPage);
 		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		System.out.println(username);
+		model.addAttribute("user", userRepository.findByUsername(username));
 		return "view/book";
+	}
+
+	@RequestMapping(value = "/book-page", method = RequestMethod.GET)
+	public String pageBookPgination(Model model, Book book,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		page = page - 1;
+		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 8));
+		model.addAttribute("bookPage", bookPage);
+		return "view/book-pagination :: #content";
+	}
+
+	@RequestMapping(value = { "/category/{categoryId}" }, method = RequestMethod.GET)
+	public String pageBookCategory(Model model, Book book, @PathVariable long categoryId,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+
+		page = page - 1;
+		Page<Book> bookPage = bookService.getBookByCategory(categoryId, PageRequest.of(page, 8));
+		model.addAttribute("bookPage", bookPage);
+		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
+		model.addAttribute("categoryPagination", true);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		System.out.println(username);
+		model.addAttribute("user", userRepository.findByUsername(username));
+		return "view/book";
+	}
+
+	@RequestMapping(value = "/category/pagination/{categoryId}", method = RequestMethod.GET)
+	public String pageBookCategoryPgination(Model model, Book book, @PathVariable long categoryId,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		page = page - 1;
+		Page<Book> bookPage = bookService.getBookByCategory(categoryId, PageRequest.of(page, 8));
+		
+		model.addAttribute("bookPage", bookPage);
+		model.addAttribute("categoryPagination", true);
+		return "view/book-pagination :: #content";
 	}
 
 	@RequestMapping(value = { "/book/search" }, method = RequestMethod.GET)
@@ -69,28 +116,19 @@ public class BookController {
 		Page<Book> bookPage = null;
 
 		if (searchType.equalsIgnoreCase("author")) {
-			bookPage = bookService.findByAuthorNameLike(searchText, PageRequest.of(0, 16));
+			bookPage = bookService.findByAuthorNameLike(searchText, PageRequest.of(0, 8));
 		} else if (searchType.equalsIgnoreCase("bookName")) {
-			bookPage = bookService.findByNameLike(searchText, PageRequest.of(0, 16));
+			bookPage = bookService.findByNameLike(searchText, PageRequest.of(0, 8));
 		} else if (searchType.equalsIgnoreCase("category")) {
-			bookPage = bookService.findByCategoryNameLike(searchText, PageRequest.of(0, 16));
+			bookPage = bookService.findByCategoryNameLike(searchText, PageRequest.of(0, 8));
 		} else {
 			// fulltext
-			bookPage = bookService.fullText(searchText, PageRequest.of(0, 16));
+			bookPage = bookService.fullText(searchText, PageRequest.of(0, 8));
 
 		}
 		model.addAttribute("bookPage", bookPage);
 		model.addAttribute("categoryRoots", categoryService.getCategoryRoot());
 		return "view/book";
-	}
-
-	@RequestMapping(value = "/book-page", method = RequestMethod.GET)
-	public String pageBookPage(Model model, Book book,
-			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		page = page - 1;
-		Page<Book> bookPage = bookService.getBookAll(PageRequest.of(page, 4));
-		model.addAttribute("bookPage", bookPage);
-		return "view/book-pagination :: #content";
 	}
 
 	@RequestMapping(value = "/book/cart/add", method = RequestMethod.GET)
@@ -215,77 +253,75 @@ public class BookController {
 			return "view/book-order-cart-success";
 		}
 	}
-	
-	
+
 	private class SalarySpecification implements Specification<Book> {
-        /**
+		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 		private final Integer minSalary;
-        private final Integer maxSalary;
+		private final Integer maxSalary;
 
-        SalarySpecification(DataTablesInput input) {
-            String salaryFilter = input.getColumn("salary").getSearch().getValue();
-            if (!StringUtils.hasText(salaryFilter)) {
-                minSalary = maxSalary = null;
-                return;
-            }
-            String[] bounds = salaryFilter.split(";");
-            minSalary = getValue(bounds, 0);
-            maxSalary = getValue(bounds, 1);
-        }
+		SalarySpecification(DataTablesInput input) {
+			String salaryFilter = input.getColumn("salary").getSearch().getValue();
+			if (!StringUtils.hasText(salaryFilter)) {
+				minSalary = maxSalary = null;
+				return;
+			}
+			String[] bounds = salaryFilter.split(";");
+			minSalary = getValue(bounds, 0);
+			maxSalary = getValue(bounds, 1);
+		}
 
-        private Integer getValue(String[] bounds, int index) {
-            if (bounds.length > index && StringUtils.hasText(bounds[index])) {
-                try {
-                    return Integer.valueOf(bounds[index]);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
-            }
-            return null;
-        }
+		private Integer getValue(String[] bounds, int index) {
+			if (bounds.length > index && StringUtils.hasText(bounds[index])) {
+				try {
+					return Integer.valueOf(bounds[index]);
+				} catch (NumberFormatException e) {
+					return null;
+				}
+			}
+			return null;
+		}
 
-        @Override
-        public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-            Expression<Integer> salary = root.get("salary").as(Integer.class);
-            if (minSalary != null && maxSalary != null) {
-                return criteriaBuilder.between(salary, minSalary, maxSalary);
-            } else if (minSalary != null) {
-                return criteriaBuilder.greaterThanOrEqualTo(salary, minSalary);
-            } else if (maxSalary != null) {
-                return criteriaBuilder.lessThanOrEqualTo(salary, maxSalary);
-            } else {
-                return criteriaBuilder.conjunction();
-            }
-        }
-    }
+		@Override
+		public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+			Expression<Integer> salary = root.get("salary").as(Integer.class);
+			if (minSalary != null && maxSalary != null) {
+				return criteriaBuilder.between(salary, minSalary, maxSalary);
+			} else if (minSalary != null) {
+				return criteriaBuilder.greaterThanOrEqualTo(salary, minSalary);
+			} else if (maxSalary != null) {
+				return criteriaBuilder.lessThanOrEqualTo(salary, maxSalary);
+			} else {
+				return criteriaBuilder.conjunction();
+			}
+		}
+	}
 
-    private class ExcludeAnalystsSpecification implements Specification<Book> {
-        /**
+	private class ExcludeAnalystsSpecification implements Specification<Book> {
+		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 
 		@Override
-        public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-            return criteriaBuilder.notEqual(root.get("position"), "Analyst");
-        }
-    }
-    @RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
-//	@ResponseBody
-	public String getDetailBook(Model model, @PathVariable("id") int id
-			) {
-		
-		Optional<Book> bookByID =bookService.getBookById(id);
-	//	
-		
-		System.out.println("gau gau" +id);
-		System.out.println("t goi m"+ bookByID.get().getName());
-		
+		public Predicate toPredicate(Root<Book> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+			return criteriaBuilder.notEqual(root.get("position"), "Analyst");
+		}
+	}
+
+	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+	public String getDetailBook(Model model, @PathVariable("id") int id) {
+
+		Optional<Book> bookByID = bookService.getBookById(id);
+
+		System.out.println("gau gau" + id);
+		System.out.println("t goi m" + bookByID.get().getName());
+
 		model.addAttribute("bookByID", bookByID.get());
-	
+
 		return "view/book-detail";
 	}
+
 }

@@ -34,7 +34,7 @@
 								
 								<div class="product-overlay">
 									<a href="#" id="add-to-cart" th:data="${book.bookId}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Mượn Sách</span></a>
-									<a href="#" class="item-quick-view" data-lightbox="ajax"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
+									<a href="#" th:href="@{/book/{bookId}( bookId = ${book.bookId} )}" class="item-quick-view"><i class="fa fa-book"></i><span> Đọc Thử</span></a>
 								</div>
 							</div>
 							<div class="product-desc">
@@ -48,7 +48,7 @@
 
 					</div><!-- #shop end -->
 					
-					<ul class="pagination" style="padding-left: 500px"  >
+					<ul th:if="${categoryPagination == null}" class="pagination" style="padding-left: 500px"  >
 						<li class="page-item" ><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
 						
 						<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
@@ -57,12 +57,22 @@
 						
 						<li class="page-item"><a class="page-link" th:href="@{/book-page(page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 					</ul>
+					
+					<ul th:if="${categoryPagination != null && categoryPagination && !bookPage.isEmpty()}" class="pagination" style="padding-left: 500px" th:with="categoryTmb = ${bookPage.getContent().get(0).getCategory()}">
+						<li class="page-item" ><a class="page-link" th:href="@{/category/pagination/{categoryId}(categoryId = ${categoryTmb.categoryId}, page=${bookPage.getNumber()})}" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
+						
+						<th:block th:each="i : ${#numbers.sequence( 1, bookPage.getTotalPages(), 1)}">
+							<li class="page-item" th:classappend="${(bookPage.getNumber() == (i -1))} ? active : ''"><a class="page-link" th:text="${i}" th:href="@{/category/pagination/{categoryId}(categoryId = ${categoryTmb.categoryId}, page=${i})}">0</a></li>
+						</th:block>
+						
+						<li class="page-item"><a class="page-link" th:href="@{/category/pagination/{categoryId}(categoryId = ${categoryTmb.categoryId}, page=${bookPage.getNumber() + 2})}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+					</ul>
 
 				</div>
 
 			</div>
 
-		<div class="modal" id="modal-book-cart"></div>
+			<div class="modal" id="modal-book-cart"></div>
 		</section>
 
 </body>

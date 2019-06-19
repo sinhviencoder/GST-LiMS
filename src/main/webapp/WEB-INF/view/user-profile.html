@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{view/layouts/layout}">
+<head>
+	<title>User profile</title>
+</head>
+<body>
+		
+		<section layout:fragment="content" id="content">
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<div class="row clearfix">
+						<table class="table table-bordered">
+			        		<tbody>
+			        		  <tr>
+			        		  		<td>STT</td>
+					        		<td>Tên Sách</td>
+					        		<td>Ngày mượn</td>
+					        		<td>Ngày trả</td>
+					        		<td>Trạng thái</td>
+			        		  </tr>
+			        			<tr th:each="order: ${ orderPage.getContent()}">
+					        		<td th:text="${order.orderId}"></td>
+					        		<td th:text="${order.book.name}"></td>
+					        		<td th:text="${order.startDate}"></td>
+					        		<td th:text="${order.endDate}"></td>
+					        		<td> 
+					        			<th:block th:switch="${order.status}">
+					        			<div th:case="1"><p>Chưa xử lí</p></div>
+					        			<div th:case="2"><p>Chấp nhận </p></div>
+					        			<div th:case="3"><p>Từ chối </p></div>
+					        			<div th:case="4"><p>Đã trả </p></div>
+					        			<div th:case="5"><p>Chờ mượn </p></div>
+					        			<div th:case="6"><p>Quá hạn </p></div>
+					        			<div th:case="7"><p>Hủy bỏ </p></div>
+					        			
+					        			<a th:href="@{/order/renewal( orderId = ${order.orderId})}" th:if="${order.status == 2}" class="btn btn-info">Gia hạn</a>
+					        			<a th:href="@{/order/cancel( orderId = ${order.orderId})}" th:if="${order.status == 1}" class="btn btn-danger">Hủy</a>
+   										</th:block>
+					        		</td>
+					        	</tr>
+					        </tbody>
+				        </table>
+					</div>
+				</div>
+</div>
+		</section>
+</body>
+</html>
