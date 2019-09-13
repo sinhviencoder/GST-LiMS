@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
+Built-By: ABC
+Build-Jdk: 11.0.2
 Implementation-Title: GST-LiMS
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: ABC
 Implementation-Vendor-Id: com.lims
-Build-Jdk: 1.8.0_201
-Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/GST-LiMS
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/GST-LiMS
 Created-By: Maven Integration for Eclipse
 
